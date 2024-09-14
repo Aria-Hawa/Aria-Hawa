@@ -1,0 +1,86 @@
+@charset "UTF-8";
+/* 重置所有標籤的樣式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* RWD不累加內距padding與邊框border */
+}
+
+/* 重置字體 */
+body {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+/* 重置標題 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+/* 重置列表 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 重置圖片 */
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 重置連接 */
+a {
+  display: block;
+  text-decoration: none;
+  color: #444;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(156, 168, 192);
+  overflow: hidden;
+}
+main #homePage {
+  width: 100%;
+  height: 101vh;
+}
+main #homePage #centerContainer {
+  position: relative;
+}
+main #homePage #line-1 {
+  width: 600px;
+  position: absolute;
+  top: 30vh;
+  left: 20%;
+}
+main #homePage #line-1 svg path {
+  stroke-width: 2px;
+  stroke-dasharray: 0 2600;
+  stroke-dashoffset: -995;
+  fill: transparent;
+  animation: line-1 3s linear forwards;
+}
+
+@keyframes line-1 {
+  60% {
+    stroke-dasharray: 2600 0;
+    stroke-dashoffset: -995;
+    fill: transparent;
+  }
+  100% {
+    stroke-dasharray: 2600 0;
+    stroke-dashoffset: -995;
+    fill: #607196;
+  }
+}/*# sourceMappingURL=testSVG.css.map */

@@ -1,0 +1,33 @@
+@use '../variables/' as *;
+
+%glassmorphism {
+    // 玻璃擬態效果
+    border-radius: 10px;
+    background-image: linear-gradient(-30deg, $gradient-w8-a8);
+    box-shadow: map-get($color, deep);
+    backdrop-filter: blur(1px);
+    background-color: map-get($color, alpha-w-60);
+}
+
+%inputNtextarea {
+    width: 100%;
+    padding: 10px;
+    color: map-get($color, lesser-5);
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    /* 取消input...的預設值 */
+    background-color: transparent;
+    border: none;
+}
+
+%flex-both-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%flex-align-center {
+    display: flex;
+    align-items: center;
+}

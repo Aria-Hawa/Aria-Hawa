@@ -1,0 +1,8 @@
+// 不管甚麼階層，必定要從../開始找
+@forward '../variables/color';
+@forward '../variables/font';
+@forward '../variables/size';
+@forward '../variables/basic';
+// 這個資料夾的所有檔案必定要用_index.scss做匯總
+// 用forward的話，style就要用use去呼叫
+// @use 'variables' as *; 這樣寫就可以，會自動抓到_index.scss

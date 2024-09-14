@@ -1,0 +1,62 @@
+@use '../variables/' as *;
+
+// 移到extend
+// @mixin flex-both-center {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// 移到extend
+// @mixin flex-align-center {
+//     display: flex;
+//     align-items: center;
+// }
+
+@mixin bordered-left ($width: 5px, $color:map-get($color, dark)) {
+    border-left: $width solid $color;
+}
+
+@mixin bordered ($width: 5px, $color:map-get($color, primary)) {
+    border: $width solid $color;
+}
+
+@mixin mask {
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: cover;
+}
+
+@mixin multiple-ellipsis ($line-clamp) {
+    // 多行省略
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line-clamp;
+}
+
+@mixin single-ellipsis {
+    // 單行省略
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap ;
+}
+
+@mixin basic-btn {
+    background-color: map-get($color, light);
+    color: map-get($color, deep);
+    font-size: map-get($font-size, xl);
+    font-weight: 600;
+    padding: $interval-m $interval-xxl;
+    border-radius: $radius-full;
+    @include bordered($color:transparent);
+    transition: $basic-speed;
+
+    &:hover{
+        background-color: map-get($color, dark);
+        color: map-get($color, light);
+        @include bordered($color:map-get($color, light));
+    }
+}
+

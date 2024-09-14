@@ -1,0 +1,59 @@
+// 群組map => 呼叫map-get($變數名稱, 屬性)
+// 色彩規範 => map-get($color, )
+$color: (
+    // 灰階
+    dark: #070707,
+    deep: #1a1a1a,
+    deepgrey: #302f2f,
+    light: #f1f1f1,
+
+    // 主色調
+    primary: rgb(156, 168, 192),
+
+    // 輔助
+    secondary1: #b6bccf,
+    secondary2: #607196,
+    secondary3: #23b2ff,
+
+    // 標記
+    mark: greenyellow,
+);
+
+// pomodoro色彩規範=> map-get($pomoColor, )
+$pomoColor: (
+    // 主色調
+    primary1: rgb(245, 135, 107),
+    primary2: rgb(56, 138, 124),
+
+    // 輔助
+    secondary1: #b6bccf,
+    secondary2: #607196,
+    secondary3: #23b2ff,
+
+    // 標記
+    mark: greenyellow,
+);
+
+// record色彩規範=> map-get($recordColor, )
+$recordColor: (
+    // 主色調
+    primary1: #FBB24A,
+    primary2: #62B7D6,
+    primary3: #5CB28A,
+    primary4: #DD5746,
+
+    // 輔助
+    secondary1: #9794B0,
+    secondary2: #7E7A9B,
+);
+
+
+
+// 漸層
+// 數列(中間有逗號)就不能加入map裡面，要獨立一個變數
+$gradient-y-p: #fffdd6 0%, #eb99d2 100%;
+$gradient-w8-a8: rgba(255, 255, 255, 0.8), rgba(220, 185, 185, .8);
+
+// 陰影
+$box-shadow-g: 2px 2px 3px map-get($color, dark);
+$box-shadow-mark: 8px 8px 0 map-get($color, mark);

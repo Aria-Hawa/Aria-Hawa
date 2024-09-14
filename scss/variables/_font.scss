@@ -1,0 +1,14 @@
+// 字體規範
+$font-family-display: 'Dancing Script', cursive;
+$font-family-title: LEMONMILK , snas-serif;
+$font-family-tc: "Noto Sans TC", sans-serif;
+$font-family-en: "Catamaran", sans-serif;
+
+// 字級規範 => map-get($font-size, )
+$font-size: (
+    s: .8rem,
+    m: 1rem,
+    l: 1.5rem,
+    xl: 2rem,
+    xxl: 11rem,
+);  

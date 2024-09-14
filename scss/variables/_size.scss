@@ -1,0 +1,28 @@
+$interval-s: 5px;
+$interval-m: 10px;
+$interval-l: 15px;
+$interval-xl: 20px;
+$interval-xxl: 25px;
+$interval-xxxl: 50px;
+
+// 圓角
+$radius-s: 4px;
+$radius-m: 8px;
+$radius-l: 12px;
+$radius-xl: 20px;
+$radius-full: 99px;
+
+
+// 最大寬度 map-get( $max-width , )
+$max-width: (
+    s: 800px,
+    m: 1000px,
+    l: 1200px,
+    xl: 1400px,
+    xxl: 1600px,
+);
+
+// RWD斷點
+$media-sm: 'max-width:640px';
+$media-md: 'min-width:768px';
+$media-lg: 'min-width:992px';

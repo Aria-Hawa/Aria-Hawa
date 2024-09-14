@@ -1,0 +1,146 @@
+@use 'reset';
+@use 'variables' as *;
+@use 'function' as *;
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+
+body {
+    font-family: 'Goldman', sans-serif;
+    overflow: hidden;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(168deg, $gradient-y-p);
+    @extend %flex-align-center;
+    justify-content: end;
+
+    figure {
+        width: 40%;
+        left: 30%;
+        bottom: 0;
+        position: absolute;
+        bottom: -12%;
+
+        >div {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        #recordPlayer {
+            position: relative;
+
+            #pin {
+                position: absolute;
+                z-index: 9;
+                width: fit-content;
+                height: 66%;
+                bottom: 25%;
+                right: 23%;
+                transform: rotate(3deg);
+                transform-origin: 83% 90%;
+
+                &:hover {
+                    cursor: pointer;
+                height: 68%;
+                }
+            }
+
+            #pinSeat {
+                position: absolute;
+                z-index: 10;
+                width: 20%;
+                height: fit-content;
+                bottom: 16%;
+                right: 14%;
+            }
+        }
+
+        #vinyl {
+            position: absolute;
+            width: 62%;
+            top: 10%;
+            left: 7%;
+
+            #rotateImg {
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        h1 {
+            font-size: 900%;
+            color: map-get($recordColor, secondary1);
+            position: absolute;
+            top: -30%;
+            left: 11%;
+        }
+
+        p {
+            rotate: -90deg;
+            width: fit-content;
+            height: fit-content;
+            font-size: 530%;
+            color: map-get($recordColor, secondary2);
+            position: absolute;
+            top: 30%;
+            left: -40%;
+        }
+    }
+
+    #menuList {
+        width: 180px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        li {
+            width: 100%;
+            height: 150px;
+
+            div {
+                width: 100%;
+                height: 100%;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    width: fit-content;
+                    height: 100%;
+                }
+
+
+                .albumCover {
+                    right: 0;
+                }
+
+                .albumRecord {
+                    left: 10px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    .albumRecord {
+                        transition: 1s all ease-in-out;
+                        left: -60px;
+                        rotate: -90deg;
+                    }
+                }
+
+                .albumBasic {
+                    right: calc(0% + 140px);
+                }
+            }
+
+
+        }
+    }
+
+}
