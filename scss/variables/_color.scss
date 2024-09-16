@@ -44,10 +44,11 @@ $recordColor: (
 
     // 輔助
     secondary1: #9794B0,
-    secondary2: #7E7A9B,
+    secondary2: #7e7a9b,
 
     // 灰階
     lightgray: #EDEDED,
+
 );
 
 
@@ -60,3 +61,6 @@ $gradient-w8-a8: rgba(255, 255, 255, 0.8), rgba(220, 185, 185, .8);
 // 陰影
 $box-shadow-g: 2px 2px 3px map-get($color, dark);
 $box-shadow-mark: 8px 8px 0 map-get($color, mark);
+
+// 透明度
+$purple-a3: rgba(126, 122, 155,.3),

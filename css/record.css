@@ -70,6 +70,24 @@ section {
   background-image: linear-gradient(168deg, #fffdd6 0%, #eb99d2 100%);
   justify-content: end;
 }
+section audio {
+  position: absolute;
+  top: 20px;
+  right: 200px;
+}
+section #audioLicense {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  padding: 10px;
+  font-size: 0.8rem;
+  background-color: rgba(126, 122, 155, 0.3);
+  border-radius: 5px;
+  color: #444;
+  word-wrap: break-word;
+  display: none;
+}
 section figure {
   width: 40%;
   height: 90vh;
@@ -111,7 +129,7 @@ section figure #recordPlayer #player p {
   rotate: -90deg;
   line-height: 1;
   font-size: 530%;
-  color: #7E7A9B;
+  color: #7e7a9b;
   position: absolute;
   top: calc(20% + 68px);
   left: calc(0% - 210px);
@@ -120,8 +138,8 @@ section figure #recordPlayer #player #pin {
   position: absolute;
   z-index: 9;
   width: fit-content;
-  height: 80%;
-  top: 10%;
+  height: 74%;
+  top: 13%;
   right: 5%;
   transform-origin: 70% bottom;
   transform: rotate(3deg);
@@ -132,7 +150,7 @@ section figure #recordPlayer #player #pin:hover {
   height: 86%;
 }
 section figure #recordPlayer #player #pin.beclick {
-  transform: rotate(-7deg);
+  transform: rotate(-6deg);
 }
 section figure #recordPlayer #player #pinSeat {
   position: absolute;
@@ -204,17 +222,18 @@ section #menuList li .album:hover {
 section #menuList li .album:hover .albumRecord {
   transition: 1s all ease-in-out;
   left: -60px;
+  top: 1%;
   rotate: -90deg;
 }
 section #menuList li .album .albumBasic {
   right: calc(0% + 122px);
 }
 
-@keyframes rotateImg {
+@keyframes rotatePin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(-6deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(-32deg);
   }
 }/*# sourceMappingURL=record.css.map */

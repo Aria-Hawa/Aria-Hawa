@@ -24,6 +24,26 @@ section {
     @extend %flex-align-center;
     justify-content: end;
 
+    audio {
+        position: absolute;
+        top: 20px;
+        right: 200px;
+    }
+
+    #audioLicense {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 20%;
+        padding: 10px;
+        font-size: map-get($font-size, s);
+        background-color: $purple-a3;
+        border-radius: 5px;
+        color: #444;
+        word-wrap: break-word;
+        display: none;
+    }
+
     figure {
         width: 40%;
         height: 90vh;
@@ -86,8 +106,8 @@ section {
                     position: absolute;
                     z-index: 9;
                     width: fit-content;
-                    height: 80%;
-                    top: calc(0% + 10%);
+                    height: 74%;
+                    top: calc(0% + 13%);
                     right: 5%;
                     transform-origin: 70% bottom;
                     transform: rotate(3deg);
@@ -99,7 +119,7 @@ section {
                     }
 
                     &.beclick {
-                        transform: rotate(-7deg);
+                    transform: rotate(-6deg);
                     }
 
                 }
@@ -191,6 +211,7 @@ section {
                     .albumRecord {
                         transition: 1s all ease-in-out;
                         left: -60px;
+                        top: 1%;
                         rotate: -90deg;
                     }
                 }
@@ -206,12 +227,12 @@ section {
 
 }
 
-@keyframes rotateImg {
+@keyframes rotatePin {
     from {
-        transform: rotate(0deg);
+        transform: rotate(-6deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform: rotate(-32deg);
     }
 }
