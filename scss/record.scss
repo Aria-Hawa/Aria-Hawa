@@ -3,6 +3,15 @@
 @use 'function' as *;
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
 
+// 覆蓋AOS屬性
+[data-aos="zoom-out-right"] {
+    transform: translate3d(-200px, 0, 0) scale(2);
+}
+
+[data-aos="zoom-in"] {
+    transform: translate3d(-490px, -300px, 0) scale(.4);
+}
+
 body {
     font-family: 'Goldman', sans-serif;
     overflow: hidden;
@@ -17,10 +26,10 @@ section {
 
     figure {
         width: 40%;
+        height: 90vh;
         left: 30%;
-        bottom: 0;
+        bottom: 3%;
         position: absolute;
-        bottom: -12%;
 
         >div {
             width: 100%;
@@ -34,81 +43,131 @@ section {
         }
 
         #recordPlayer {
-            position: relative;
+            padding-top: 20%;
+            width: fit-content;
+            height: 100%;
+            // min-width: 350px;
 
-            #pin {
-                position: absolute;
-                z-index: 9;
-                width: fit-content;
-                height: 66%;
-                bottom: 25%;
-                right: 23%;
-                transform: rotate(3deg);
-                transform-origin: 83% 90%;
+            #player {
+                position: relative;
+                height: 100%;
+                // 設定寬會抓高且1:1
+                aspect-ratio: 1/1;
+                border-radius: 25px;
+                background-color: map-get($recordColor, lightgray);
 
-                &:hover {
-                    cursor: pointer;
-                height: 68%;
+                box-shadow:
+                    109.95px 108.61px 42.91px rgba(40, 24, 11, 0.01),
+                    69.72px 69.72px 40.23px rgba(40, 24, 11, 0.05),
+                    40.23px 38.88px 33.52px rgba(40, 24, 11, 0.18),
+                    17.43px 17.43px 24.14px rgba(40, 24, 11, 0.31),
+                    4.02px 4.02px 13.41px rgba(40, 24, 11, 0.36);
+
+                h1 {
+                    line-height: .7;
+                    font-size: 900%;
+                    color: map-get($recordColor, secondary1);
+                    position: absolute;
+                    top: calc(0% - 100px);
+                    left: calc(50% - 158px);
+                }
+
+                p {
+                    rotate: -90deg;
+                    line-height: 1;
+                    font-size: 530%;
+                    color: map-get($recordColor, secondary2);
+                    position: absolute;
+                    top: calc(0% + 20% + 68px);
+                    left: calc(0% - 210px);
+                }
+
+                #pin {
+                    position: absolute;
+                    z-index: 9;
+                    width: fit-content;
+                    height: 80%;
+                    top: calc(0% + 10%);
+                    right: 5%;
+                    transform-origin: 70% bottom;
+                    transform: rotate(3deg);
+                    transition: .8s all ease-in-out;
+
+                    &:hover {
+                        cursor: pointer;
+                        height: 86%;
+                    }
+
+                    &.beclick {
+                        transform: rotate(-7deg);
+                    }
+
+                }
+
+                #pinSeat {
+                    position: absolute;
+                    z-index: 10;
+                    width: 25%;
+                    height: fit-content;
+                    bottom: -6%;
+                    right: -6%;
                 }
             }
-
-            #pinSeat {
-                position: absolute;
-                z-index: 10;
-                width: 20%;
-                height: fit-content;
-                bottom: 16%;
-                right: 14%;
-            }
         }
+
+
 
         #vinyl {
             position: absolute;
-            width: 62%;
-            top: 10%;
-            left: 7%;
+            // min-width: 318px;
+            width: fit-content;
+            height: 66%;
+            top: calc(0% + 20% + 7.5%);
+            left: calc(0% + 4%);
+            z-index: 2;
+
+            #round {
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                position: relative;
+            }
+
+            #vinylBasic {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: scale(.95);
+            }
 
             #rotateImg {
                 position: absolute;
+                transform: scale(.95);
                 top: 0;
+                right: 0;
             }
         }
 
-        h1 {
-            font-size: 900%;
-            color: map-get($recordColor, secondary1);
-            position: absolute;
-            top: -30%;
-            left: 11%;
-        }
 
-        p {
-            rotate: -90deg;
-            width: fit-content;
-            height: fit-content;
-            font-size: 530%;
-            color: map-get($recordColor, secondary2);
-            position: absolute;
-            top: 30%;
-            left: -40%;
-        }
     }
 
     #menuList {
-        width: 180px;
+        width: 160px;
         height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
 
         li {
+            height: 130px;
             width: 100%;
-            height: 150px;
+            margin: $interval-xxl 0;
 
-            div {
+            .album {
                 width: 100%;
                 height: 100%;
                 position: relative;
+                transition: 1.5s all ease-in-out;
 
                 img {
                     position: absolute;
@@ -122,11 +181,13 @@ section {
                 }
 
                 .albumRecord {
+                    height: 98%;
                     left: 10px;
                 }
 
                 &:hover {
                     cursor: pointer;
+
                     .albumRecord {
                         transition: 1s all ease-in-out;
                         left: -60px;
@@ -135,7 +196,7 @@ section {
                 }
 
                 .albumBasic {
-                    right: calc(0% + 140px);
+                    right: calc(0% + 122px);
                 }
             }
 
@@ -143,4 +204,14 @@ section {
         }
     }
 
+}
+
+@keyframes rotateImg {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

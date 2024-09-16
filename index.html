@@ -6,42 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aria's Studio</title>
     <link rel="icon" href="./favicon.ico">
+    <!-- AOS套件 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- 自定義CSS -->
     <link rel="stylesheet" href="./css/record.min.css">
+
+    <!-- 載入React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 載入babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
     <section>
+        <audio loop controls>
+            <source src="./audio/snoozyBeats-malibu.mp3" type="audio/mpeg">
+            您的瀏覽器不支援audio,請升級您的瀏覽器
+            </audio>
         <figure>
             <div id="recordPlayer">
-                <img src="./images/record/recordPlayer.svg" alt="">
-                <img src="./images/record/recordPlayerPin.svg" alt="" id="pin">
-                <img src="./images/record/recordPlayerSeat.svg" alt="" id="pinSeat">
+                <!-- <img src="./images/record/recordPlayer.svg" alt="" > -->
+                <div id="player">
+                    <h1>Aria</h1>
+                    <p>playlist</p>
+                    <img src="./images/record/recordPlayerPin.svg" alt="" id="pin">
+                    <img src="./images/record/recordPlayerSeat.svg" alt="" id="pinSeat">
+                </div>
+
             </div>
             <div id="vinyl">
-                <div id="vinylBasic"><img src="./images/record/vinyl.svg" alt=""></div>
-                <div id="rotateImg"><img src="./images/record/rotate-home.svg" alt=""></div>
+                <div id="round"><img src="./images/record/playerRound.svg" alt="">
+                    <div id="vinylBasic"><img src="./images/record/vinyl.svg" alt=""></div>
+                    <div id="rotateImg"><img src="./images/record/rotate-home.svg" alt=""></div>
+                </div>
             </div>
-            <h1>Aria</h1>
-            <p>playlist</p>
+
         </figure>
 
         <ul id="menuList">
             <li>
-                <div id="album-aboutME">
+                <div id="album-aboutME" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
                     <img src="./images/record/record-about.svg" alt="" class="albumRecord">
                     <img src="./images/record/cover-about.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
-                <div id="album-works">
+                <div id="album-works" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
                     <img src="./images/record/record-works.svg" alt="" class="albumRecord">
                     <img src="./images/record/cover-works.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
-                <div id="album-contact">
+                <div id="album-contact" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
                     <img src="./images/record/record-contact.svg" alt="" class="albumRecord">
                     <img src="./images/record/cover-contact.svg" alt="" class="albumCover">
@@ -49,6 +68,101 @@
             </li>
         </ul>
     </section>
+
+    <!-- 設定jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            // 開始
+
+            // pin在外面時true
+            let pinOut = true;
+            let rotateInterval;      // 用來控制旋轉的 interval
+            $('#pin').click(function () {
+                if (pinOut) {
+                    setTimeout(function () {
+                        rotateInterval = setInterval(function () {
+                            deg = (deg + 1) % 360; // 每次增加1度
+                            $('#rotateImg').css('transform', `rotate(${deg}deg)`);
+                        }, 15); // 每15毫秒更新一次角度
+                    }, 1400);  //延遲1.4s才旋轉
+                    pinOut = false;
+
+                } else {
+                    setTimeout(function () {
+                        clearInterval(rotateInterval);
+
+                    }, 1400);
+                    // cancelAnimationFrame(rotationId);
+                    pinOut = true;
+                }
+                $(this).toggleClass('beclick');
+            });
+
+            // 無限旋轉動畫+紀錄角度
+            let deg = 0;
+            let rotationId;
+            // function rotate() {
+            //     rotationId = requestAnimationFrame(rotate);
+            //     // 旋轉角度在0~360之間
+            //     deg = (deg + 1) % 360;
+            //     $('#rotateImg').delay(1800).css('transform', `rotate(${deg}deg)`);
+            // }
+
+            // let playerXY = $('#recordPlayer')[0].getBoundingClientRect();
+            // let albumRecord = $('#vinyl')[0].getBoundingClientRect();
+            // // recordPlayer和vinyl相對水平位置
+            // let pvx = playerXY.left - albumRecord.left;
+            // // recordPlayer和vinyl相對垂直位置
+            // let pvy = playerXY.top - albumRecord.top;
+
+
+            // album被click的動畫
+            let albumBeClick = false;
+            $('.album').click(function () {
+
+                // let playerXY = $('#recordPlayer')[0].getBoundingClientRect();
+                // let albumRecord = $(this).find('.albumRecord')[0].getBoundingClientRect();
+                // // recordPlayer和vinyl相對水平位置
+                // let pvx = playerXY.left - albumRecord.left;
+                // // recordPlayer和vinyl相對垂直位置
+                // let pvy = playerXY.top - albumRecord.top;
+
+                // console.log(pvx,pvy);
+                // $(this).find('.albumRecord').css({
+                //     'transform':`translate(${pvx}px, ${pvy}px) scale(2.5)`,
+
+                // });
+
+                if (!albumBeClick) {
+                    $('#vinyl').attr({
+                        'data-aos': 'zoom-out-right',
+                        'data-aos-duration': "1800",
+                        'data-aos-easing': 'ease-in',
+                    }).css('opacity', '1');
+                    setTimeout(() => {
+                        $('#vinyl').attr({
+                            'data-aos': 'zoom-in',
+                            'data-aos-duration': "1800",
+                        }).css('[data-aos="zoom-in"]', 'transform:translate3d(-460px,-280px,0) scale(.5);');
+                    }, 1300);
+                    albumBeClick = true;
+                }
+            });
+
+
+
+
+            // jQuery結束
+        });
+    </script>
+    <!-- AOS特效 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 
 </html>
