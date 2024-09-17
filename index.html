@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aria's Studio</title>
     <link rel="icon" href="./favicon.ico">
-    <!-- AOS套件 -->
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+    <!-- animate css套件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- 自定義CSS -->
     <link rel="stylesheet" href="./css/record.min.css">
 
@@ -24,10 +24,10 @@
             <source src="./audio/snoozyBeats-malibu.mp3" type="audio/mpeg">
             您的瀏覽器不支援audio,請升級您的瀏覽器
         </audio>
-        <p id="audioLicense">(free) lofi typebeat "malibu"<br>
-            by snoozybeats <br>
-            free download: <br>
-            <a href="https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7">https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7</a></p>
+        <p id="audioLicense">＜Malibu＞ by snoozybeats <br>
+            <a id="freeDownload"
+                href="https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7">https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7</a>
+        </p>
         <figure>
             <div id="recordPlayer">
                 <div id="player">
@@ -40,8 +40,9 @@
             </div>
             <div id="vinyl">
                 <div id="round"><img src="./images/record/playerRound.svg" alt="">
-                    <div id="vinylBasic"><img src="./images/record/vinyl.svg" alt=""></div>
-                    <div id="rotateImg"><img src="./images/record/rotate-home.svg" alt=""></div>
+                    <div id="vinylBasic" class="homeVinyl"><img src="./images/record/vinyl.svg" alt=""></div>
+                    <div id="rotateImg" class="homeVinyl"><img src="./images/record/rotate-home.svg" alt=""></div>
+                    <div id="droppable"></div>
                 </div>
             </div>
 
@@ -51,21 +52,21 @@
             <li>
                 <div id="album-aboutME" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-about.svg" alt="" class="albumRecord">
+                    <img src="./images/record/record-about.svg" alt="" class="albumRecord draggable">
                     <img src="./images/record/cover-about.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
                 <div id="album-works" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-works.svg" alt="" class="albumRecord">
+                    <img src="./images/record/record-works.svg" alt="" class="albumRecord draggable">
                     <img src="./images/record/cover-works.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
                 <div id="album-contact" class="album">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-contact.svg" alt="" class="albumRecord">
+                    <img src="./images/record/record-contact.svg" alt="" class="albumRecord draggable">
                     <img src="./images/record/cover-contact.svg" alt="" class="albumCover">
                 </div>
             </li>
@@ -75,6 +76,8 @@
     <!-- 設定jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- jquery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(function () {
             // 開始
@@ -84,11 +87,14 @@
 
             // 音樂結束，停止旋轉+pin歸位
             homeAudio.onended = function () {
-                console.log('結束了');
+                // 停止旋轉
                 clearInterval(rotateInterval);
+                // pin歸位
                 $('#pin').css({
-                    'transform': 'rotate(3deg)',
+                    // 'transform': 'rotate(3deg)',
+                    'animation': 'pinReturn 1.8s ease-in-out forwards',
                 });
+                // 淡出音樂license
                 $('#audioLicense').fadeOut(2500);
             }
 
@@ -111,12 +117,14 @@
                         // 播放音樂
                         homeAudio.play();
                         // pin隨音樂長度變化
-                        $('#pin').css('animation', `rotatePin linear ${homeAudio.duration}s`);
+                        $('#pin').css('animation', `rotatePin linear ${homeAudio.duration}s forwards`);
+                        // 顯示音樂license
                         $('#audioLicense').fadeIn(2500);
                     }, 2500);
                     pinOut = false;
                 } else {
                     setTimeout(function () {
+                        // 停止旋轉
                         clearInterval(rotateInterval);
                         // 暫停音樂
                         homeAudio.pause();
@@ -126,27 +134,45 @@
                 $(this).toggleClass('beclick');
             });
 
-
-
-
             // album被click的動畫
-            let albumBeClick = false;
-            $('.album').click(function () {
-                if (!albumBeClick) {
-                    $('#vinyl').attr({
-                        'data-aos': 'zoom-out-right',
-                        'data-aos-duration': "1800",
-                        'data-aos-easing': 'ease-in',
-                    }).css('opacity', '1');
-                    setTimeout(() => {
-                        $('#vinyl').attr({
-                            'data-aos': 'zoom-in',
-                            'data-aos-duration': "1800",
-                        }).css('[data-aos="zoom-in"]', 'transform:translate3d(-460px,-280px,0) scale(.5);');
-                    }, 1300);
-                    albumBeClick = true;
-                }
+            // let albumBeClick = false;
+            // $('.album').click(function () {
+
+            //     if (!albumBeClick) {
+            //         $('.homeVinyl').addClass('beclick');
+            //         albumBeClick = true;
+            //     }
+            //     // 停止旋轉
+            //     clearInterval(rotateInterval);
+            //     // 暫停音樂
+            //     homeAudio.pause();
+            //     $(this).find('.albumRecord').css('transform', 'rotate(-360deg) translate()')
+            // });
+
+
+            // jq UI 拖放物件設定
+            $('.draggable').draggable({
+                // 拖曳到無效區域時返回原位
+                revert: "invalid"
             });
+
+            $("#droppable").droppable({
+                accept: ".draggable",
+                drop: function (event, ui) {
+                    $(this).addClass("ui-state-highlight");
+                    // 可以在這裡處理放置後的邏輯
+                },
+                over: function (event, ui) {
+                    $(this).addClass("ui-state-hover");
+                },
+                out: function (event, ui) {
+                    $(this).removeClass("ui-state-hover");
+                }
+
+
+
+            });
+
 
 
 
@@ -154,11 +180,7 @@
             // jQuery結束
         });
     </script>
-    <!-- AOS特效 -->
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
-    <!-- <script>
-        AOS.init();
-    </script> -->
+
 
 </body>
 

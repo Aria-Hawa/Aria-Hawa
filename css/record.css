@@ -51,14 +51,6 @@ section {
   align-items: center;
 }
 
-[data-aos=zoom-out-right] {
-  transform: translate3d(-200px, 0, 0) scale(2);
-}
-
-[data-aos=zoom-in] {
-  transform: translate3d(-490px, -300px, 0) scale(0.4);
-}
-
 body {
   font-family: "Goldman", sans-serif;
   overflow: hidden;
@@ -79,14 +71,20 @@ section #audioLicense {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 20%;
+  width: 25%;
   padding: 10px;
-  font-size: 0.8rem;
-  background-color: rgba(126, 122, 155, 0.3);
+  font-size: 1rem;
   border-radius: 5px;
   color: #444;
   word-wrap: break-word;
   display: none;
+}
+section #audioLicense #freeDownload {
+  font-size: 0.8rem;
+  color: #444;
+  background-color: rgba(126, 122, 155, 0.3);
+  border-radius: 5px;
+  word-wrap: break-word;
 }
 section figure {
   width: 40%;
@@ -174,13 +172,24 @@ section figure #vinyl #round {
   z-index: -1;
   position: relative;
 }
-section figure #vinyl #vinylBasic {
+section figure #vinyl #round .homeVinyl.beclick {
+  animation: fadeOutTopLeft 1.8s forwards;
+}
+section figure #vinyl #round #droppable {
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 100%;
+}
+section figure #vinyl #round #vinylBasic {
   position: absolute;
   top: 0;
   right: 0;
   transform: scale(0.95);
 }
-section figure #vinyl #rotateImg {
+section figure #vinyl #round #rotateImg {
   position: absolute;
   transform: scale(0.95);
   top: 0;
@@ -192,17 +201,19 @@ section #menuList {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid green;
 }
 section #menuList li {
   height: 130px;
   width: 100%;
+  border: 1px solid green;
   margin: 25px 0;
 }
 section #menuList li .album {
   width: 100%;
   height: 100%;
   position: relative;
-  transition: 1.5s all ease-in-out;
+  transition: 0.6s all ease-in-out;
 }
 section #menuList li .album img {
   position: absolute;
@@ -211,21 +222,28 @@ section #menuList li .album img {
 }
 section #menuList li .album .albumCover {
   right: 0;
+  top: 0;
 }
 section #menuList li .album .albumRecord {
   height: 98%;
+  top: 0;
   left: 10px;
+  transition: 1s all ease-in-out;
+}
+section #menuList li .album .albumRecord:active {
+  cursor: grabbing;
 }
 section #menuList li .album:hover {
-  cursor: pointer;
+  cursor: grab;
+  rotate: -5deg;
 }
 section #menuList li .album:hover .albumRecord {
-  transition: 1s all ease-in-out;
   left: -60px;
   top: 1%;
   rotate: -90deg;
 }
 section #menuList li .album .albumBasic {
+  top: 0;
   right: calc(0% + 122px);
 }
 
@@ -235,5 +253,22 @@ section #menuList li .album .albumBasic {
   }
   to {
     transform: rotate(-32deg);
+  }
+}
+@keyframes pinReturn {
+  to {
+    transform: rotate(3deg);
+  }
+}
+@keyframes fadeOutTopLeft {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, -100%, 0);
+    transform: translate3d(-100%, -100%, 0);
   }
 }/*# sourceMappingURL=record.css.map */

@@ -3,15 +3,6 @@
 @use 'function' as *;
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
 
-// 覆蓋AOS屬性
-[data-aos="zoom-out-right"] {
-    transform: translate3d(-200px, 0, 0) scale(2);
-}
-
-[data-aos="zoom-in"] {
-    transform: translate3d(-490px, -300px, 0) scale(.4);
-}
-
 body {
     font-family: 'Goldman', sans-serif;
     overflow: hidden;
@@ -34,15 +25,23 @@ section {
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 20%;
+        width: 25%;
         padding: 10px;
-        font-size: map-get($font-size, s);
-        background-color: $purple-a3;
+        font-size: map-get($font-size, m);
         border-radius: 5px;
         color: #444;
         word-wrap: break-word;
         display: none;
+
+        #freeDownload {
+            font-size: map-get($font-size, s);
+            color: #444;
+            background-color: $purple-a3;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
     }
+
 
     figure {
         width: 40%;
@@ -119,7 +118,7 @@ section {
                     }
 
                     &.beclick {
-                    transform: rotate(-6deg);
+                        transform: rotate(-6deg);
                     }
 
                 }
@@ -135,11 +134,8 @@ section {
             }
         }
 
-
-
         #vinyl {
             position: absolute;
-            // min-width: 318px;
             width: fit-content;
             height: 66%;
             top: calc(0% + 20% + 7.5%);
@@ -151,21 +147,36 @@ section {
                 height: 100%;
                 z-index: -1;
                 position: relative;
+
+                .homeVinyl.beclick {
+                    animation: fadeOutTopLeft 1.8s forwards;
+                }
+
+                #droppable {
+                    border: 1px solid red;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                }
+
+                #vinylBasic {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: scale(.95);
+                }
+
+                #rotateImg {
+                    position: absolute;
+                    transform: scale(.95);
+                    top: 0;
+                    right: 0;
+                }
             }
 
-            #vinylBasic {
-                position: absolute;
-                top: 0;
-                right: 0;
-                transform: scale(.95);
-            }
 
-            #rotateImg {
-                position: absolute;
-                transform: scale(.95);
-                top: 0;
-                right: 0;
-            }
         }
 
 
@@ -177,17 +188,19 @@ section {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        border: 1px solid green;
 
         li {
             height: 130px;
             width: 100%;
+            border: 1px solid green;
             margin: $interval-xxl 0;
 
             .album {
                 width: 100%;
                 height: 100%;
                 position: relative;
-                transition: 1.5s all ease-in-out;
+                transition: .6s all ease-in-out;
 
                 img {
                     position: absolute;
@@ -195,21 +208,30 @@ section {
                     height: 100%;
                 }
 
-
                 .albumCover {
                     right: 0;
+                    top: 0;
                 }
 
                 .albumRecord {
                     height: 98%;
+                    top: 0;
                     left: 10px;
+                    transition: 1s all ease-in-out;
+
+                    &:active {
+                        cursor: grabbing;
+                    }
                 }
 
                 &:hover {
-                    cursor: pointer;
+                    // cursor: pointer;
+                    cursor: grab;
+                    rotate: -5deg;
+
+
 
                     .albumRecord {
-                        transition: 1s all ease-in-out;
                         left: -60px;
                         top: 1%;
                         rotate: -90deg;
@@ -217,6 +239,7 @@ section {
                 }
 
                 .albumBasic {
+                    top: 0;
                     right: calc(0% + 122px);
                 }
             }
@@ -224,6 +247,14 @@ section {
 
         }
     }
+
+    // .ui-draggable {
+    //     position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     border: 1px solid greenyellow;
+    //     transform: scale(2);
+    // }
 
 }
 
@@ -234,5 +265,25 @@ section {
 
     to {
         transform: rotate(-32deg);
+    }
+}
+
+@keyframes pinReturn {
+    to {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes fadeOutTopLeft {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0)
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, -100%, 0);
+        transform: translate3d(-100%, -100%, 0)
     }
 }
