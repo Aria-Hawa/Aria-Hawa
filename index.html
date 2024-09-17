@@ -8,9 +8,10 @@
     <link rel="icon" href="./favicon.ico">
     <!-- animate css套件 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- jQuery Ui -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- 自定義CSS -->
     <link rel="stylesheet" href="./css/record.min.css">
-
     <!-- 載入React -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -41,7 +42,7 @@
             <div id="vinyl">
                 <div id="round"><img src="./images/record/playerRound.svg" alt="">
                     <div id="vinylBasic" class="homeVinyl"><img src="./images/record/vinyl.svg" alt=""></div>
-                    <div id="rotateImg" class="homeVinyl"><img src="./images/record/rotate-home.svg" alt=""></div>
+                    <div id="rotateImg" class="homeVinyl rotateImg"><img src="./images/record/rotate-home.svg" alt=""></div>
                     <div id="droppable"></div>
                 </div>
             </div>
@@ -50,23 +51,32 @@
 
         <ul id="menuList">
             <li>
-                <div id="album-aboutME" class="album">
+                <div id="album-aboutME" class="album aboutRecord">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-about.svg" alt="" class="albumRecord draggable">
+                    <div id="aboutRecord" class="albumRecord draggable">
+                        <img src="./images/record/background.svg" alt="" class="background">
+                        <img src="./images/record/record-about.svg" alt="" class="recordRotate" >
+                    </div>
                     <img src="./images/record/cover-about.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
-                <div id="album-works" class="album">
+                <div id="album-works" class="album worksRecord">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-works.svg" alt="" class="albumRecord draggable">
+                    <div id="worksRecord" class="albumRecord draggable">
+                        <img src="./images/record/background.svg" alt="" class="background">
+                        <img src="./images/record/record-works.svg" alt="" class="recordRotate" >
+                    </div>
                     <img src="./images/record/cover-works.svg" alt="" class="albumCover">
                 </div>
             </li>
             <li>
-                <div id="album-contact" class="album">
+                <div id="album-contact" class="album contactRecord">
                     <img src="./images/record/albumBasic.svg" alt="" class="albumBasic">
-                    <img src="./images/record/record-contact.svg" alt="" class="albumRecord draggable">
+                    <div id="contactRecord" class="albumRecord draggable">
+                        <img src="./images/record/background.svg" alt="" class="background">
+                        <img src="./images/record/record-contact.svg" alt="" class="recordRotate" >
+                    </div>
                     <img src="./images/record/cover-contact.svg" alt="" class="albumCover">
                 </div>
             </li>
@@ -78,108 +88,7 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- jquery UI -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            // 開始
-
-            // homeAudio 變化事件
-            let homeAudio = $('#homeAudio')[0];
-
-            // 音樂結束，停止旋轉+pin歸位
-            homeAudio.onended = function () {
-                // 停止旋轉
-                clearInterval(rotateInterval);
-                // pin歸位
-                $('#pin').css({
-                    // 'transform': 'rotate(3deg)',
-                    'animation': 'pinReturn 1.8s ease-in-out forwards',
-                });
-                // 淡出音樂license
-                $('#audioLicense').fadeOut(2500);
-            }
-
-            // pin在外面時true
-            let pinOut = true;
-            // 無限旋轉動畫+紀錄角度
-            let deg = 0;
-            let rotationId;
-            // 用來控制旋轉的 interval
-            let rotateInterval;
-            $('#pin').click(function () {
-                if (pinOut) {
-                    setTimeout(function () {
-                        rotateInterval = setInterval(function () {
-                            deg = (deg + 1) % 360; // 每次增加1度
-                            $('#rotateImg').css('transform', `rotate(${deg}deg)`);
-                        }, 15); // 每15毫秒更新一次角度
-                    }, 1400);  //延遲1.4s才旋轉
-                    setTimeout(function () {
-                        // 播放音樂
-                        homeAudio.play();
-                        // pin隨音樂長度變化
-                        $('#pin').css('animation', `rotatePin linear ${homeAudio.duration}s forwards`);
-                        // 顯示音樂license
-                        $('#audioLicense').fadeIn(2500);
-                    }, 2500);
-                    pinOut = false;
-                } else {
-                    setTimeout(function () {
-                        // 停止旋轉
-                        clearInterval(rotateInterval);
-                        // 暫停音樂
-                        homeAudio.pause();
-                    }, 1400);
-                    pinOut = true;
-                }
-                $(this).toggleClass('beclick');
-            });
-
-            // album被click的動畫
-            // let albumBeClick = false;
-            // $('.album').click(function () {
-
-            //     if (!albumBeClick) {
-            //         $('.homeVinyl').addClass('beclick');
-            //         albumBeClick = true;
-            //     }
-            //     // 停止旋轉
-            //     clearInterval(rotateInterval);
-            //     // 暫停音樂
-            //     homeAudio.pause();
-            //     $(this).find('.albumRecord').css('transform', 'rotate(-360deg) translate()')
-            // });
-
-
-            // jq UI 拖放物件設定
-            $('.draggable').draggable({
-                // 拖曳到無效區域時返回原位
-                revert: "invalid"
-            });
-
-            $("#droppable").droppable({
-                accept: ".draggable",
-                drop: function (event, ui) {
-                    $(this).addClass("ui-state-highlight");
-                    // 可以在這裡處理放置後的邏輯
-                },
-                over: function (event, ui) {
-                    $(this).addClass("ui-state-hover");
-                },
-                out: function (event, ui) {
-                    $(this).removeClass("ui-state-hover");
-                }
-
-
-
-            });
-
-
-
-
-
-            // jQuery結束
-        });
-    </script>
+    <script src="./js/record.js"></script>
 
 
 </body>

@@ -158,7 +158,7 @@ section {
                     height: 100%;
                     position: absolute;
                     top: 0;
-                    right: 100%;
+                    right: 0;
                 }
 
                 #vinylBasic {
@@ -171,8 +171,8 @@ section {
                 #rotateImg {
                     position: absolute;
                     transform: scale(.95);
-                    top: 0;
-                    right: 0;
+                    top: 0px;
+                    right: 0px;
                 }
             }
 
@@ -202,7 +202,7 @@ section {
                 position: relative;
                 transition: .6s all ease-in-out;
 
-                img {
+                >img {
                     position: absolute;
                     width: fit-content;
                     height: 100%;
@@ -211,13 +211,42 @@ section {
                 .albumCover {
                     right: 0;
                     top: 0;
+                    -webkit-user-drag: none;
                 }
 
                 .albumRecord {
+                    position: relative;
+                    // position: absolute;
                     height: 98%;
+                    aspect-ratio: 1/1;
                     top: 0;
                     left: 10px;
                     transition: 1s all ease-in-out;
+                    border: 1px solid red;
+
+                    &:hover {
+                        cursor: grab;
+                    }
+
+                    .background {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        -webkit-user-drag: none;
+                        /* 適用於 Webkit 瀏覽器 */
+                        pointer-events: none;
+                        /* 讓滑鼠事件穿透到父元素 */
+                    }
+
+                    .recordRotate {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        -webkit-user-drag: none;
+                        /* 適用於 Webkit 瀏覽器 */
+                        pointer-events: none;
+                        /* 讓滑鼠事件穿透到父元素 */
+                    }
 
                     &:active {
                         cursor: grabbing;
@@ -225,11 +254,8 @@ section {
                 }
 
                 &:hover {
-                    // cursor: pointer;
-                    cursor: grab;
+                    cursor: pointer;
                     rotate: -5deg;
-
-
 
                     .albumRecord {
                         left: -60px;
@@ -241,10 +267,24 @@ section {
                 .albumBasic {
                     top: 0;
                     right: calc(0% + 122px);
+                    -webkit-user-drag: none;
                 }
             }
 
 
+        }
+    }
+
+    #droppable {
+
+        .draggable {
+            width: 100%;
+            height: 100%;
+
+            img {
+                position: absolute;
+                transform: scale(0.95);
+            }
         }
     }
 

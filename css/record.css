@@ -181,7 +181,7 @@ section figure #vinyl #round #droppable {
   height: 100%;
   position: absolute;
   top: 0;
-  right: 100%;
+  right: 0;
 }
 section figure #vinyl #round #vinylBasic {
   position: absolute;
@@ -192,8 +192,8 @@ section figure #vinyl #round #vinylBasic {
 section figure #vinyl #round #rotateImg {
   position: absolute;
   transform: scale(0.95);
-  top: 0;
-  right: 0;
+  top: 0px;
+  right: 0px;
 }
 section #menuList {
   width: 160px;
@@ -215,7 +215,7 @@ section #menuList li .album {
   position: relative;
   transition: 0.6s all ease-in-out;
 }
-section #menuList li .album img {
+section #menuList li .album > img {
   position: absolute;
   width: fit-content;
   height: 100%;
@@ -223,18 +223,43 @@ section #menuList li .album img {
 section #menuList li .album .albumCover {
   right: 0;
   top: 0;
+  -webkit-user-drag: none;
 }
 section #menuList li .album .albumRecord {
+  position: relative;
   height: 98%;
+  aspect-ratio: 1/1;
   top: 0;
   left: 10px;
   transition: 1s all ease-in-out;
+  border: 1px solid red;
+}
+section #menuList li .album .albumRecord:hover {
+  cursor: grab;
+}
+section #menuList li .album .albumRecord .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+  /* 適用於 Webkit 瀏覽器 */
+  pointer-events: none;
+  /* 讓滑鼠事件穿透到父元素 */
+}
+section #menuList li .album .albumRecord .recordRotate {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+  /* 適用於 Webkit 瀏覽器 */
+  pointer-events: none;
+  /* 讓滑鼠事件穿透到父元素 */
 }
 section #menuList li .album .albumRecord:active {
   cursor: grabbing;
 }
 section #menuList li .album:hover {
-  cursor: grab;
+  cursor: pointer;
   rotate: -5deg;
 }
 section #menuList li .album:hover .albumRecord {
@@ -245,6 +270,15 @@ section #menuList li .album:hover .albumRecord {
 section #menuList li .album .albumBasic {
   top: 0;
   right: calc(0% + 122px);
+  -webkit-user-drag: none;
+}
+section #droppable .draggable {
+  width: 100%;
+  height: 100%;
+}
+section #droppable .draggable img {
+  position: absolute;
+  transform: scale(0.95);
 }
 
 @keyframes rotatePin {
