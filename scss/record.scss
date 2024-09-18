@@ -347,7 +347,6 @@ section {
                     padding: $interval-xl;
 
                     a {
-                        color: map-get($recordColor, lightgray);
                         display: flex;
                         align-items: center;
                         font-size: 1rem;
@@ -363,6 +362,13 @@ section {
                         }
                     }
                 }
+            }
+        }
+
+
+        #works {
+            .card {
+                width: 100%;
             }
         }
 
