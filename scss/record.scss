@@ -14,7 +14,7 @@ section {
     width: 100%;
     height: 100vh;
     // background-image: linear-gradient(168deg, $gradient-y-p);
-    background-image: url(../images/record/custom-gradient-12.svg);
+    background-image: url(../images/record/custom-gradient-12.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -47,14 +47,13 @@ section {
         padding: 10px;
         font-size: map-get($font-size, m);
         border-radius: 5px;
-        color: #444;
+        color: map-get($recordColor, lightgray);
         word-wrap: break-word;
         display: none;
 
         #freeDownload {
+            color: map-get($recordColor, lightgray);
             font-size: map-get($font-size, s);
-            color: #444;
-            background-color: $purple-a3;
             border-radius: 5px;
             word-wrap: break-word;
         }
@@ -121,7 +120,7 @@ section {
                     top: calc(0% + 13%);
                     right: 5%;
                     transform-origin: 98% 98%;
-                    transform: rotate(3deg);
+                    transform: rotate(7deg);
                     transition: .8s all ease-in-out;
 
                     &:hover {
@@ -129,9 +128,9 @@ section {
                         height: 86%;
                     }
 
-                    &.beclick {
-                        transform: rotate(-6deg);
-                    }
+                    // &.beclick {
+                    //     transform: rotate(-6deg);
+                    // }
 
                 }
 
@@ -301,7 +300,6 @@ section {
 
         .inner {
             position: absolute;
-            // border: 1px solid red;
             top: 16%;
             left: 10%;
             width: calc(100% - 10% - 240px);
@@ -341,11 +339,38 @@ section {
                     border-bottom: 2px solid map-get($recordColor, lightgray);
                 }
             }
-
-
         }
 
+        #contact {
+            .card {
+                >div {
+                    padding: $interval-xl;
 
+                    a {
+                        color: map-get($recordColor, lightgray);
+                        display: flex;
+                        align-items: center;
+                        font-size: 1rem;
+                        margin-bottom: $interval-xl;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        img {
+                            width: 36px;
+                            margin-right: $interval-xl;
+                        }
+                    }
+                }
+            }
+        }
+
+        #about.inner,
+        #works.inner,
+        #contact.inner {
+            display: none;
+        }
     }
 
 }
@@ -394,17 +419,17 @@ section {
 
 @keyframes rotatePin {
     from {
-        transform: rotate(-6deg);
+        transform: rotate(-0deg);
     }
 
     to {
-        transform: rotate(-32deg);
+        transform: rotate(-25deg);
     }
 }
 
 @keyframes pinReturn {
     to {
-        transform: rotate(3deg);
+        transform: rotate(8deg);
     }
 }
 

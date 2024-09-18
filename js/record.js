@@ -1,22 +1,8 @@
 $(function () {
     // 開始
 
-    // homeAudio 變化事件
-    let homeAudio = $('#homeAudio')[0];
-
-    // 音樂結束，停止旋轉+pin歸位
-    homeAudio.onended = function () {
-        // 停止旋轉
-        clearInterval(rotateInterval);
-        // pin歸位
-        $('#pin').css({
-            // 'transform': 'rotate(3deg)',
-            'animation': 'pinReturn 1.8s ease-in-out forwards',
-        });
-        // 淡出音樂license
-        $('#audioLicense').fadeOut(2500);
-    }
-
+    // playAudio 變化事件
+    let playAudio = $('#playAudio')[0];
     // pin在外面時true
     let pinOut = true;
     // 無限旋轉動畫+紀錄角度
@@ -24,74 +10,57 @@ $(function () {
     let rotationId;
     // 用來控制旋轉的 interval
     let rotateInterval;
-    // $('#pin').click(function () {
-    //     if (pinOut) {
-    //         setTimeout(function () {
-    //             rotateInterval = setInterval(function () {
-    //                 deg = (deg + 1) % 360; // 每次增加1度
-    //                 $('.rotateImg').css('transform', `rotate(${deg}deg) scale(0.95)`);
-    //             }, 15); // 每15毫秒更新一次角度
-    //         }, 1400);  //延遲1.4s才旋轉
-    //         setTimeout(function () {
-    //             // 播放音樂
-    //             homeAudio.play();
-    //             // pin隨音樂長度變化
-    //             $('#pin').css('animation', `rotatePin linear ${homeAudio.duration}s forwards`);
-    //             // 顯示音樂license
-    //             $('#audioLicense').fadeIn(2500);
-    //         }, 2500);
-    //         pinOut = false;
-    //     } else {
-    //         setTimeout(function () {
-    //             // 停止旋轉
-    //             clearInterval(rotateInterval);
-    //             // 暫停音樂
-    //             homeAudio.pause();
-    //         }, 1400);
-    //         pinOut = true;
-    //     }
-    //     $(this).toggleClass('beclick');
-    // });
-
-
     $('#pin').click(function () {
         if (pinOut) {
-            // 清除任何現有的 rotateInterval
+            $('#pin').css('transform', 'rotate(0deg)');
             if (rotateInterval) {
                 clearInterval(rotateInterval);
             }
+            // 延遲1.4秒開始旋轉唱片
             setTimeout(function () {
                 rotateInterval = setInterval(function () {
                     deg = (deg + 1) % 360; // 每次增加1度
                     $('.rotateImg').css('transform', `rotate(${deg}deg) scale(0.95)`);
                 }, 15); // 每15毫秒更新一次角度
-            }, 1400);  // 延遲1.4s才旋轉
+            }, 1400);
+            // 延遲2.5秒開始播放音樂，並讓 pin 開始轉動
             setTimeout(function () {
-                // 播放音樂
-                homeAudio.play();
-                // pin隨音樂長度變化
-                $('#pin').css('animation', `rotatePin linear ${homeAudio.duration}s forwards`);
-                // 顯示音樂license
+                $('#pin').css('animation', `rotatePin linear ${playAudio.duration}s forwards`);
+                $('#pin').css('animation-play-state', 'running'); // 恢復 pin 轉動
+                playAudio.play();
                 $('#audioLicense').fadeIn(2500);
             }, 2500);
             pinOut = false;
-
         } else {
+            // 延遲1.4s停止旋轉+暫停pin
             setTimeout(function () {
-                // 停止旋轉和其他操作
                 if (rotateInterval) {
-                    // 停止旋轉
                     clearInterval(rotateInterval);
-                    rotateInterval = null; // 重置變量
+                    rotateInterval = null;
                 }
                 // 暫停音樂
-                homeAudio.pause();
+                playAudio.pause();
+                // 暫停 pin 的動畫
+                $('#pin').css('animation-play-state', 'paused');
             }, 1400);
-            pinOut = true;
-
+            pinOut = true; // 更新狀態
         }
-        $(this).toggleClass('beclick');
     });
+
+
+    // 音樂結束，停止旋轉+pin歸位
+    playAudio.onended = function () {
+        // 停止旋轉
+        clearInterval(rotateInterval);
+        // pin歸位
+        $('#pin').css({
+            'animation': 'pinReturn 1.8s ease-in-out forwards',
+        });
+        // 淡出音樂license
+        $('#audioLicense').fadeOut(2500);
+        pinOut = true;
+    }
+
 
 
 
@@ -101,9 +70,21 @@ $(function () {
         revert: "invalid",
         start: function (event, ui) {
             $('#menuList').css('z-index', '2');
+            // 停止音樂
+            playAudio.pause();
+            // 停止旋轉
+            clearInterval(rotateInterval);
+            // pin歸位
+            $('#pin').css({
+                'animation': 'pinReturn 1.8s ease-in-out forwards',
+            });
+            // 淡出音樂license
+            $('#audioLicense').fadeOut(2500);
+            pinOut = true;
         },
         drag: function (event, ui) {
             $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
+            $('.rotateImg').remove('rotatImg');
             $("#droppable").find(".draggable").fadeOut(800, function () {
                 let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
                 let thisId = thisDiv.attr('id');
@@ -132,21 +113,46 @@ $(function () {
                 top: 0
             });
             $droppedItem.find('img:last').addClass('rotateImg');
-            if (! $('#center').hasClass('moveCorner')) {
+            if (!$('#center').hasClass('moveCorner')) {
                 $('#center').addClass('moveCorner');
-                if ($(window).width() < 1280){
+                if ($(window).width() <= 1280) {
                     $('#center.moveCorner').css({
                         'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
                     });
-                }else{
+                } else {
                     $('#center.moveCorner').css({
                         'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
                     });
                 }
-                
-                $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
-                $('header').delay(2000).fadeIn(800);
             }
+
+            $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
+            $('header').delay(2000).fadeIn(800);
+            $('#content').delay(2400).fadeIn(800);
+            switch ($droppedItem.attr('id')) {
+                case 'aboutRecord':
+                    $('.inner').css('display', 'none');
+                    $('#about.inner').fadeIn(900);
+                    $('#playAudio source').attr('src', './audio/snoozyBeats-midnightDrifter.mp3');
+                    playAudio = $('#playAudio')[0];
+                    playAudio.load();
+                    break;
+                case 'worksRecord':
+                    $('.inner').css('display', 'none');
+                    $('#works.inner').fadeIn(900);
+                    $('#playAudio source').attr('src', './audio/snoozyBeats-doingGood.mp3');
+                    playAudio = $('#playAudio')[0];
+                    playAudio.load();
+                    break;
+                case 'contactRecord':
+                    $('.inner').css('display', 'none');
+                    $('#contact.inner').fadeIn(900);
+                    $('#playAudio source').attr('src', './audio/snoozyBeats-rewind.mp3');
+                    playAudio = $('#playAudio')[0];
+                    playAudio.load();
+                    break;
+            }
+
         }
     });
 
