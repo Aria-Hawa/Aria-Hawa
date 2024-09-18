@@ -350,22 +350,41 @@ section {
 }
 
 @media (max-width:1440px) {
-
     section {
         #content .inner {
-            top: 10%;
-            width: calc(100% - 10% - 200px);
+            top: 8%;
+            left: 8%;
+            width: calc(100% - 8% - 180px);
 
             p {
-                font-size: 20px;
+                font-size: 100%;
+                line-height: 1.5rem;
             }
 
             .card {
 
                 p {
                     font-size: 1rem;
-
                 }
+            }
+        }
+
+        #center.moveCorner {
+            transition: 2s 0.8s all ease-in-out;
+        }
+
+        #menuList {
+            width: 140px;
+
+            li {
+                height: 110px;
+
+                .album {
+                    .albumBasic {
+                        right: calc(0% + 105px);
+                    }
+                }
+
             }
         }
     }

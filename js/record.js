@@ -134,10 +134,16 @@ $(function () {
             $droppedItem.find('img:last').addClass('rotateImg');
             if (! $('#center').hasClass('moveCorner')) {
                 $('#center').addClass('moveCorner');
-                $('#center.moveCorner').css({
-                    'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
-                    'transition': '2s 0.8s all ease-in-out'
-                });
+                if ($(window).width() < 1280){
+                    $('#center.moveCorner').css({
+                        'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
+                    });
+                }else{
+                    $('#center.moveCorner').css({
+                        'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
+                    });
+                }
+                
                 $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
                 $('header').delay(2000).fadeIn(800);
             }
