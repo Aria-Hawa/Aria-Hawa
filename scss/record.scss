@@ -1,7 +1,9 @@
 @use 'reset';
 @use 'variables' as *;
 @use 'function' as *;
-@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap'), url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
 
 body {
     font-family: 'Goldman', sans-serif;
@@ -11,9 +13,25 @@ body {
 section {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(168deg, $gradient-y-p);
+    // background-image: linear-gradient(168deg, $gradient-y-p);
+    background-image: url(../images/record/custom-gradient-12.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     @extend %flex-align-center;
     justify-content: end;
+
+    header {
+        position: absolute;
+        font-size: map-get($font-size, xl);
+        line-height: map-get($font-size, xl);
+        top: 20px;
+        left: 20px;
+        padding: $interval-m;
+        color: map-get($recordColor, lightgray);
+        border: 4px solid map-get($recordColor, lightgray);
+        display: none;
+    }
 
     audio {
         position: absolute;
@@ -45,7 +63,7 @@ section {
 
     figure {
         width: 40%;
-        height: 90vh;
+        height: 84vh;
         left: 30%;
         bottom: 3%;
         position: absolute;
@@ -53,12 +71,6 @@ section {
         >div {
             width: 100%;
             height: 100%;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
         }
 
         #recordPlayer {
@@ -108,7 +120,7 @@ section {
                     height: 74%;
                     top: calc(0% + 13%);
                     right: 5%;
-                    transform-origin: 70% bottom;
+                    transform-origin: 98% 98%;
                     transform: rotate(3deg);
                     transition: .8s all ease-in-out;
 
@@ -137,9 +149,9 @@ section {
         #vinyl {
             position: absolute;
             width: fit-content;
-            height: 66%;
-            top: calc(0% + 20% + 7.5%);
-            left: calc(0% + 4%);
+            height: 72%;
+            top: calc(0% + 20% + 4.5%);
+            left: calc(0% + 2%);
             z-index: 2;
 
             #round {
@@ -148,32 +160,25 @@ section {
                 z-index: -1;
                 position: relative;
 
-                .homeVinyl.beclick {
-                    animation: fadeOutTopLeft 1.8s forwards;
+                img {
+                    height: 100%;
+                    aspect-ratio: 1/1;
                 }
 
                 #droppable {
-                    border: 1px solid red;
                     width: 100%;
                     height: 100%;
                     position: absolute;
                     top: 0;
                     right: 0;
+
+                    img {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                    }
                 }
 
-                #vinylBasic {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    transform: scale(.95);
-                }
-
-                #rotateImg {
-                    position: absolute;
-                    transform: scale(.95);
-                    top: 0px;
-                    right: 0px;
-                }
             }
 
 
@@ -188,12 +193,10 @@ section {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border: 1px solid green;
 
         li {
             height: 130px;
             width: 100%;
-            border: 1px solid green;
             margin: $interval-xxl 0;
 
             .album {
@@ -222,7 +225,6 @@ section {
                     top: 0;
                     left: 10px;
                     transition: 1s all ease-in-out;
-                    border: 1px solid red;
 
                     &:hover {
                         cursor: grab;
@@ -288,15 +290,87 @@ section {
         }
     }
 
-    // .ui-draggable {
-    //     position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     border: 1px solid greenyellow;
-    //     transform: scale(2);
-    // }
+    #content {
+        width: 55%;
+        height: 100vh;
+        background-color: $black-a3;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .inner {
+            position: absolute;
+            // border: 1px solid red;
+            top: 16%;
+            left: 10%;
+            width: calc(100% - 10% - 240px);
+            height: fit-content;
+            color: map-get($recordColor, lightgray);
+
+            h2 {
+                font-size: 40px;
+                margin-bottom: $interval-xl;
+            }
+
+            p {
+                font-family: $font-family-tc;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 2.5rem;
+            }
+
+            .card {
+                width: 88%;
+                margin-top: $interval-xxl;
+
+                >div {
+                    padding: $interval-m;
+                    border: 1px solid map-get($recordColor, lightgray);
+                    border-radius: 10px;
+                }
+
+                >div:first-child {
+                    margin-bottom: $interval-xl;
+                }
+
+                h3 {
+                    width: 78%;
+                    padding-bottom: $interval-s;
+                    font-size: 24px;
+                    border-bottom: 2px solid map-get($recordColor, lightgray);
+                }
+            }
+
+
+        }
+
+
+    }
 
 }
+
+@media (max-width:1440px) {
+
+    section {
+        #content .inner {
+            top: 10%;
+            width: calc(100% - 10% - 200px);
+
+            p {
+                font-size: 20px;
+            }
+
+            .card {
+
+                p {
+                    font-size: 1rem;
+
+                }
+            }
+        }
+    }
+}
+
 
 @keyframes rotatePin {
     from {

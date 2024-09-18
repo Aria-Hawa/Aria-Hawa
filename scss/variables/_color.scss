@@ -19,32 +19,18 @@ $color: (
     mark: greenyellow,
 );
 
-// pomodoro色彩規範=> map-get($pomoColor, )
-$pomoColor: (
-    // 主色調
-    primary1: rgb(245, 135, 107),
-    primary2: rgb(56, 138, 124),
-
-    // 輔助
-    secondary1: #b6bccf,
-    secondary2: #607196,
-    secondary3: #23b2ff,
-
-    // 標記
-    mark: greenyellow,
-);
 
 // record色彩規範=> map-get($recordColor, )
 $recordColor: (
     // 主色調
-    primary1: #FBB24A,
-    primary2: #62B7D6,
-    primary3: #5CB28A,
+    primary1: #DE9959,
+    primary2: #2C5ECA,
+    primary3: #9586D6,
     primary4: #DD5746,
 
     // 輔助
-    secondary1: #9794B0,
-    secondary2: #7e7a9b,
+    secondary1: #EAE8FA,
+    secondary2: #E9E9E9,
 
     // 灰階
     lightgray: #EDEDED,
@@ -63,4 +49,5 @@ $box-shadow-g: 2px 2px 3px map-get($color, dark);
 $box-shadow-mark: 8px 8px 0 map-get($color, mark);
 
 // 透明度
-$purple-a3: rgba(126, 122, 155,.3),
+$purple-a3: rgba(126, 122, 155, .3);
+$black-a3: rgba(17, 17, 17, .3);

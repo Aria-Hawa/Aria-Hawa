@@ -75,6 +75,7 @@ $(function () {
                 $('#audioLicense').fadeIn(2500);
             }, 2500);
             pinOut = false;
+
         } else {
             setTimeout(function () {
                 // 停止旋轉和其他操作
@@ -87,9 +88,11 @@ $(function () {
                 homeAudio.pause();
             }, 1400);
             pinOut = true;
+
         }
         $(this).toggleClass('beclick');
     });
+
 
 
 
@@ -100,11 +103,11 @@ $(function () {
             $('#menuList').css('z-index', '2');
         },
         drag: function (event, ui) {
-            $('#vinylBasic, .rotateImg').css('animation', 'fadeOutTopLeft 1.8s forwards');
+            $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
             $("#droppable").find(".draggable").fadeOut(800, function () {
-                let thisDiv = $(this).clone().attr('style','').css('display','none');
+                let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
                 let thisId = thisDiv.attr('id');
-                $(`.${thisId}`).find('.albumBasic').after(function(){
+                $(`.${thisId}`).find('.albumBasic').after(function () {
                     return $(thisDiv).fadeIn(800);
                 });
                 // console.log($('#aboutRecord.draggable').data("ui-draggable"));
@@ -121,7 +124,6 @@ $(function () {
         accept: ".draggable",
         drop: function (event, ui) {
             var $droppedItem = ui.helper;
-
             // 將新的物件放入droppable
             $(this).append($droppedItem);
             $droppedItem.css({
@@ -129,8 +131,20 @@ $(function () {
                 left: 0,
                 top: 0
             });
+            $droppedItem.find('img:last').addClass('rotateImg');
+            if (! $('#center').hasClass('moveCorner')) {
+                $('#center').addClass('moveCorner');
+                $('#center.moveCorner').css({
+                    'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
+                    'transition': '2s 0.8s all ease-in-out'
+                });
+                $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
+                $('header').delay(2000).fadeIn(800);
+            }
         }
     });
+
+
 
 
     // 測試初始化
@@ -144,7 +158,7 @@ $(function () {
     //             $('#menuList').css('z-index', '2');
     //         },
     //         drag: function (event, ui) {
-    //             $('#vinylBasic, .rotateImg').css('animation', 'fadeOutTopLeft 1.8s forwards');
+    //             $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
     //             $("#droppable").find(".draggable").fadeOut(800, function () {
     //                 let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
     //                 let thisId = thisDiv.attr('id');

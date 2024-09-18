@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
 /* 重置所有標籤的樣式 */
 * {
   margin: 0;
@@ -59,8 +60,22 @@ body {
 section {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(168deg, #fffdd6 0%, #eb99d2 100%);
+  background-image: url(../images/record/custom-gradient-12.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: end;
+}
+section header {
+  position: absolute;
+  font-size: 2rem;
+  line-height: 2rem;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  color: #EDEDED;
+  border: 4px solid #EDEDED;
+  display: none;
 }
 section audio {
   position: absolute;
@@ -88,7 +103,7 @@ section #audioLicense #freeDownload {
 }
 section figure {
   width: 40%;
-  height: 90vh;
+  height: 84vh;
   left: 30%;
   bottom: 3%;
   position: absolute;
@@ -96,11 +111,6 @@ section figure {
 section figure > div {
   width: 100%;
   height: 100%;
-}
-section figure > div img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 section figure #recordPlayer {
   padding-top: 20%;
@@ -118,7 +128,7 @@ section figure #recordPlayer #player {
 section figure #recordPlayer #player h1 {
   line-height: 0.7;
   font-size: 900%;
-  color: #9794B0;
+  color: #EAE8FA;
   position: absolute;
   top: calc(0% - 100px);
   left: calc(50% - 158px);
@@ -127,7 +137,7 @@ section figure #recordPlayer #player p {
   rotate: -90deg;
   line-height: 1;
   font-size: 530%;
-  color: #7e7a9b;
+  color: #E9E9E9;
   position: absolute;
   top: calc(20% + 68px);
   left: calc(0% - 210px);
@@ -139,7 +149,7 @@ section figure #recordPlayer #player #pin {
   height: 74%;
   top: 13%;
   right: 5%;
-  transform-origin: 70% bottom;
+  transform-origin: 98% 98%;
   transform: rotate(3deg);
   transition: 0.8s all ease-in-out;
 }
@@ -161,9 +171,9 @@ section figure #recordPlayer #player #pinSeat {
 section figure #vinyl {
   position: absolute;
   width: fit-content;
-  height: 66%;
-  top: 27.5%;
-  left: 4%;
+  height: 72%;
+  top: 24.5%;
+  left: 2%;
   z-index: 2;
 }
 section figure #vinyl #round {
@@ -172,28 +182,21 @@ section figure #vinyl #round {
   z-index: -1;
   position: relative;
 }
-section figure #vinyl #round .homeVinyl.beclick {
-  animation: fadeOutTopLeft 1.8s forwards;
+section figure #vinyl #round img {
+  height: 100%;
+  aspect-ratio: 1/1;
 }
 section figure #vinyl #round #droppable {
-  border: 1px solid red;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   right: 0;
 }
-section figure #vinyl #round #vinylBasic {
+section figure #vinyl #round #droppable img {
   position: absolute;
   top: 0;
   right: 0;
-  transform: scale(0.95);
-}
-section figure #vinyl #round #rotateImg {
-  position: absolute;
-  transform: scale(0.95);
-  top: 0px;
-  right: 0px;
 }
 section #menuList {
   width: 160px;
@@ -201,12 +204,10 @@ section #menuList {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid green;
 }
 section #menuList li {
   height: 130px;
   width: 100%;
-  border: 1px solid green;
   margin: 25px 0;
 }
 section #menuList li .album {
@@ -232,7 +233,6 @@ section #menuList li .album .albumRecord {
   top: 0;
   left: 10px;
   transition: 1s all ease-in-out;
-  border: 1px solid red;
 }
 section #menuList li .album .albumRecord:hover {
   cursor: grab;
@@ -280,7 +280,63 @@ section #droppable .draggable img {
   position: absolute;
   transform: scale(0.95);
 }
+section #content {
+  width: 55%;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.3);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+section #content .inner {
+  position: absolute;
+  top: 16%;
+  left: 10%;
+  width: calc(90% - 240px);
+  height: fit-content;
+  color: #EDEDED;
+}
+section #content .inner h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+section #content .inner p {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 2.5rem;
+}
+section #content .inner .card {
+  width: 88%;
+  margin-top: 25px;
+}
+section #content .inner .card > div {
+  padding: 10px;
+  border: 1px solid #EDEDED;
+  border-radius: 10px;
+}
+section #content .inner .card > div:first-child {
+  margin-bottom: 20px;
+}
+section #content .inner .card h3 {
+  width: 78%;
+  padding-bottom: 5px;
+  font-size: 24px;
+  border-bottom: 2px solid #EDEDED;
+}
 
+@media (max-width: 1440px) {
+  section #content .inner {
+    top: 10%;
+    width: calc(90% - 200px);
+  }
+  section #content .inner p {
+    font-size: 20px;
+  }
+  section #content .inner .card p {
+    font-size: 1rem;
+  }
+}
 @keyframes rotatePin {
   from {
     transform: rotate(-6deg);
