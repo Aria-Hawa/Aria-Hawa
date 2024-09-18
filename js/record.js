@@ -63,8 +63,6 @@ $(function () {
 
 
 
-
-
     // 初始化draggable
     $(".draggable").draggable({
         revert: "invalid",
@@ -155,72 +153,6 @@ $(function () {
 
         }
     });
-
-
-
-
-    // 測試初始化
-    // console.log($('#aboutRecord.draggable').data())
-    // // 初始化draggable
-    // function initializeDraggable() {
-    // console.log($('#aboutRecord.draggable').data())
-    //     $(".draggable").draggable({
-    //         revert: "invalid",
-    //         start: function (event, ui) {
-    //             $('#menuList').css('z-index', '2');
-    //         },
-    //         drag: function (event, ui) {
-    //             $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
-    //             $("#droppable").find(".draggable").fadeOut(800, function () {
-    //                 let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
-    //                 let thisId = thisDiv.attr('id');
-    //                 $(`.${thisId}`).find('.albumBasic').after(function () {
-    //                     return $(thisDiv).fadeIn(800);
-    //                 });
-    //                 console.log($('#aboutRecord.draggable').data("ui-draggable"));
-    //                 $(this).remove();
-    //             });
-    //         },
-    //         stop: function (event, ui) {
-    //             $(this).css('rotate', '-90deg');
-    //         },
-    //     });
-    // }
-
-    // // 初始化 droppable
-    // $("#droppable").droppable({
-    //     accept: ".draggable",
-    //     drop: function (event, ui) {
-    //         var $droppedItem = ui.helper;
-
-    //         // 將新的物件放入droppable
-    //         $(this).append($droppedItem);
-    //         $droppedItem.css({
-    //             position: "relative",
-    //             left: 0,
-    //             top: 0
-    //         });
-    //     }
-    // });
-
-    // // 首次初始化
-    // initializeDraggable();
-
-    // // 動態新增 .draggable 元素的函數
-    // function addDraggableElement() {
-    //     // 假設你在這裡新增了一個元素到 .albumBasic 中
-    //     let newElement = $('<div class="draggable">...</div>');
-    //     $('.albumBasic').append(newElement);
-
-    //     // 重新初始化剛新增的 .draggable 元素
-    //     initializeDraggable();
-    // }
-
-    // // 使用 addDraggableElement() 函數來動態新增元素
-    // addDraggableElement();
-
-
-
 
 
 
