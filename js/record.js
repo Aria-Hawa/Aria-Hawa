@@ -3,7 +3,6 @@ $(function () {
 
     // playAudio 變化事件
     let playAudio = $('#playAudio')[0];
-    console.log($(playAudio).find('source').attr('src'));
     // pin在外面時true
     let pinOut = true;
     // 無限旋轉動畫+紀錄角度
@@ -29,9 +28,9 @@ $(function () {
                 $('#pin').css('animation', `rotatePin linear ${playAudio.duration}s forwards`);
                 $('#pin').css('animation-play-state', 'running'); // 恢復 pin 轉動
                 playAudio.play();
-                if($(playAudio).find('source').attr('src') == './audio/snoozyBeats-lazyAfternoon.mp3'){
+                if ($(playAudio).find('source').attr('src') == './audio/snoozyBeats-lazyAfternoon.mp3') {
                     $('#audioLicense').fadeIn(2500);
-                }else {
+                } else {
                     $('#audioLicense').remove();
                     $('#audioLicense2').delay(800).fadeIn(2500);
                 }
@@ -69,6 +68,100 @@ $(function () {
     }
 
 
+    // 9/19 修改拖拉clone元件卻無法移除唱片前的版本
+    // // 初始化draggable
+    // $(".draggable").draggable({
+    //     revert: "invalid",
+    //     start: function (event, ui) {
+    //         $('#menuList').css('z-index', '2');
+    //         // 停止音樂
+    //         playAudio.pause();
+    //         // 停止旋轉
+    //         clearInterval(rotateInterval);
+    //         // pin歸位
+    //         $('#pin').css({
+    //             'animation': 'pinReturn 1.8s ease-in-out forwards',
+    //         });
+    //         // 淡出音樂license
+    //         $('#audioLicense').fadeOut(2500);
+    //         $('#audioLicense2').fadeOut(2500);
+    //         pinOut = true;
+    //     },
+    //     drag: function (event, ui) {
+    //         $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
+    //         $('.rotateImg').removeClass('rotateImg');
+    //         $("#droppable").find(".draggable").fadeOut(800, function () {
+    //             let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
+    //             let thisId = thisDiv.attr('id');
+    //             $(`.${thisId}`).find('.albumBasic').after(function () {
+    //                 return $(thisDiv).fadeIn(800);
+    //             });
+    //             $(this).remove();
+    //             console.log(this);
+    //             thisDiv.draggable();
+    //         });
+    //     },
+    // });
+
+    // // 初始化droppable
+    // $("#droppable").droppable({
+    //     accept: ".draggable",
+    //     drop: function (event, ui) {
+    //         var $droppedItem = ui.helper;
+    //         // 將新的物件放入droppable
+    //         $(this).append($droppedItem);
+    //         $droppedItem.css({
+    //             position: "relative",
+    //             left: 0,
+    //             top: 0
+    //         });
+    //         $droppedItem.find('img:last').addClass('rotateImg');
+    //         if (!$('#center').hasClass('moveCorner')) {
+    //             $('#center').addClass('moveCorner');
+    //             if ($(window).width() <= 1280) {
+    //                 $('#center.moveCorner').css({
+    //                     'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
+    //                 });
+    //             } else {
+    //                 $('#center.moveCorner').css({
+    //                     'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
+    //                     'transition': '2s 0.8s all ease-in-out',
+    //                 });
+    //             }
+    //         }
+
+    //         $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
+    //         $('header').delay(2000).fadeIn(800);
+    //         $('#content').delay(2400).fadeIn(800);
+    //         switch ($droppedItem.attr('id')) {
+    //             case 'aboutRecord':
+    //                 $('.inner').css('display', 'none');
+    //                 $('#about.inner').fadeIn(900);
+    //                 $('#playAudio source').attr('src', './audio/snoozyBeats-midnightDrifter.mp3');
+    //                 $('#audioLicense2 span').text('＜Midnight Drifter＞');
+    //                 playAudio = $('#playAudio')[0];
+    //                 playAudio.load();
+    //                 break;
+    //             case 'worksRecord':
+    //                 $('.inner').css('display', 'none');
+    //                 $('#works.inner').fadeIn(900);
+    //                 $('#playAudio source').attr('src', './audio/snoozyBeats-doingGood.mp3');
+    //                 $('#audioLicense2 span').text('＜Doing Good＞');
+    //                 playAudio = $('#playAudio')[0];
+    //                 playAudio.load();
+    //                 break;
+    //             case 'contactRecord':
+    //                 $('.inner').css('display', 'none');
+    //                 $('#contact.inner').fadeIn(900);
+    //                 $('#playAudio source').attr('src', './audio/snoozyBeats-rewind.mp3');
+    //                 $('#audioLicense2 span').text('＜Rewind＞');
+    //                 playAudio = $('#playAudio')[0];
+    //                 playAudio.load();
+    //                 break;
+    //         }
+
+    //     }
+    // });
 
     // 初始化draggable
     $(".draggable").draggable({
@@ -90,26 +183,34 @@ $(function () {
         },
         drag: function (event, ui) {
             $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
-            $('.rotateImg').remove('rotatImg');
-            $("#droppable").find(".draggable").fadeOut(800, function () {
-                let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
-                let thisId = thisDiv.attr('id');
-                $(`.${thisId}`).find('.albumBasic').after(function () {
-                    return $(thisDiv).fadeIn(800);
-                });
-                // console.log($('#aboutRecord.draggable').data("ui-draggable"));
-                $(this).remove();
-            });
-        },
-        stop: function (event, ui) {
-            $(this).css('rotate', '-90deg');
+            $('.rotateImg').removeClass('rotateImg');
+            $("#droppable").find(".draggable").fadeOut(800);
         },
     });
+
+    // function () {
+    //     let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
+    //     let thisId = thisDiv.attr('id');
+    //     $(`.${thisId}`).find('.albumBasic').after(function () {
+    //         return $(thisDiv).fadeIn(800);
+    //     });
+    //     $(this).remove();
+    //     thisDiv.draggable();
+    // }
 
     // 初始化droppable
     $("#droppable").droppable({
         accept: ".draggable",
         drop: function (event, ui) {
+            // 9/19變更
+            // #droppable裡面的.draggable要移除
+            let currentItem = $(this).find(".draggable");
+            console.log(currentItem)
+
+
+
+
+
             var $droppedItem = ui.helper;
             // 將新的物件放入droppable
             $(this).append($droppedItem);
@@ -164,6 +265,23 @@ $(function () {
             }
 
         }
+    });
+
+
+
+
+
+
+
+
+    // 點擊HOME回歸原位
+    $('header').click(function () {
+        // $('#center').addClass('moveback');
+        // $('#center.moveback').css({
+        //     'transform': 'rotate(0deg) translate3d(0%, 0%, 0)',
+        // });
+        $('#center.moveCorner').removeClass('.moveCorner');
+
     });
 
 
