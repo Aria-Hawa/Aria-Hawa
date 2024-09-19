@@ -3,6 +3,7 @@ $(function () {
 
     // playAudio 變化事件
     let playAudio = $('#playAudio')[0];
+    console.log($(playAudio).find('source').attr('src'));
     // pin在外面時true
     let pinOut = true;
     // 無限旋轉動畫+紀錄角度
@@ -28,7 +29,12 @@ $(function () {
                 $('#pin').css('animation', `rotatePin linear ${playAudio.duration}s forwards`);
                 $('#pin').css('animation-play-state', 'running'); // 恢復 pin 轉動
                 playAudio.play();
-                $('#audioLicense').fadeIn(2500);
+                if($(playAudio).find('source').attr('src') == './audio/snoozyBeats-lazyAfternoon.mp3'){
+                    $('#audioLicense').fadeIn(2500);
+                }else {
+                    $('#audioLicense').remove();
+                    $('#audioLicense2').delay(800).fadeIn(2500);
+                }
             }, 2500);
             pinOut = false;
         } else {
@@ -58,6 +64,7 @@ $(function () {
         });
         // 淡出音樂license
         $('#audioLicense').fadeOut(2500);
+        $('#audioLicense2').fadeOut(2500);
         pinOut = true;
     }
 
@@ -78,6 +85,7 @@ $(function () {
             });
             // 淡出音樂license
             $('#audioLicense').fadeOut(2500);
+            $('#audioLicense2').fadeOut(2500);
             pinOut = true;
         },
         drag: function (event, ui) {
@@ -120,6 +128,7 @@ $(function () {
                 } else {
                     $('#center.moveCorner').css({
                         'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
+                        'transition': '2s 0.8s all ease-in-out',
                     });
                 }
             }
@@ -132,6 +141,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#about.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-midnightDrifter.mp3');
+                    $('#audioLicense2 span').text('＜Midnight Drifter＞');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;
@@ -139,6 +149,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#works.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-doingGood.mp3');
+                    $('#audioLicense2 span').text('＜Doing Good＞');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;
@@ -146,6 +157,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#contact.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-rewind.mp3');
+                    $('#audioLicense2 span').text('＜Rewind＞');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;

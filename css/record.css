@@ -44,7 +44,6 @@ img {
 a {
   display: block;
   text-decoration: none;
-  color: #444;
 }
 
 section {
@@ -55,6 +54,9 @@ section {
 body {
   font-family: "Goldman", sans-serif;
   overflow: hidden;
+}
+body a {
+  color: #EDEDED;
 }
 
 section {
@@ -99,6 +101,20 @@ section #audioLicense #freeDownload {
   font-size: 0.8rem;
   border-radius: 5px;
   word-wrap: break-word;
+}
+section #audioLicense2 {
+  color: #EDEDED;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  font-size: 24px;
+  display: none;
+}
+section #audioLicense2 span {
+  font-size: 42px;
+}
+section #audioLicense2 a {
+  font-size: 14px;
 }
 section figure {
   width: 40%;
@@ -285,9 +301,6 @@ section #content {
   right: 0;
   display: none;
 }
-section #content a {
-  color: #EDEDED;
-}
 section #content .inner {
   position: absolute;
   top: 16%;
@@ -328,7 +341,6 @@ section #content #contact .card > div {
   padding: 20px;
 }
 section #content #contact .card > div a {
-  color: #EDEDED;
   display: flex;
   align-items: center;
   font-size: 1rem;

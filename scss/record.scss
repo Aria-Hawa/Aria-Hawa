@@ -8,6 +8,10 @@
 body {
     font-family: 'Goldman', sans-serif;
     overflow: hidden;
+
+    a {
+        color: map-get($recordColor, lightgray);
+    }
 }
 
 section {
@@ -56,6 +60,22 @@ section {
             font-size: map-get($font-size, s);
             border-radius: 5px;
             word-wrap: break-word;
+        }
+    }
+
+    #audioLicense2 {
+        color: map-get($recordColor, lightgray);
+        position: absolute;
+        left: 10%;
+        top: 10%;
+        font-size: 24px;
+        display: none;
+        span {
+            font-size: 42px;
+        }
+
+        a {
+            font-size: 14px;
         }
     }
 
