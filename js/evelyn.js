@@ -12,29 +12,55 @@ $(function () {
     let rotateInterval;
     $('#pin').click(function () {
         if (pinOut) {
+            // 清除pin動畫
+            $('#pin').css('animation', 'none');
             $('#pin').css('transform', 'rotate(0deg)');
             if (rotateInterval) {
                 clearInterval(rotateInterval);
             }
-            // 延遲1.4秒開始旋轉唱片
+            // 旋轉唱片機到角落
+            if (!$('#center').hasClass('moveCorner')) {
+                $('#center').addClass('moveCorner');
+                if ($(window).width() <= 1280) {
+                    $('#center.moveCorner').css({
+                        'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
+                    });
+                } else {
+                    $('#center.moveCorner').css({
+                        'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
+                        'transition': '2s 0.8s all ease-in-out',
+                    });
+                }
+            }
+            // 隱藏Evelyn 及 playlist字眼
+            $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
+            // 顯示logo
+            $('header').delay(2000).fadeIn(800);
+            // 延遲2秒開始旋轉唱片
             setTimeout(function () {
                 rotateInterval = setInterval(function () {
                     deg = (deg + 1) % 360; // 每次增加1度
                     $('.rotateImg').css('transform', `rotate(${deg}deg) scale(0.95)`);
                 }, 15); // 每15毫秒更新一次角度
-            }, 1400);
-            // 延遲2.5秒開始播放音樂，並讓 pin 開始轉動
+            }, 2000);
+            // 延遲3秒開始播放音樂，並讓 pin 開始轉動
             setTimeout(function () {
                 $('#pin').css('animation', `rotatePin linear ${playAudio.duration}s forwards`);
                 $('#pin').css('animation-play-state', 'running'); // 恢復 pin 轉動
                 playAudio.play();
                 if ($(playAudio).find('source').attr('src') == './audio/snoozyBeats-lazyAfternoon.mp3') {
-                    $('#audioLicense').fadeIn(2500);
+                    // 顯示HOME內容
+                    $('#evelynHome h2').delay(800).fadeIn(1800, function () {
+                        $('#evelynHome p').fadeIn(2000, function () {
+                            $('#audioLicense').fadeIn(800);
+                        });
+                    });
+
                 } else {
                     $('#audioLicense').remove();
                     $('#audioLicense2').delay(800).fadeIn(2500);
                 }
-            }, 2500);
+            }, 3000);
             pinOut = false;
         } else {
             // 延遲1.4s停止旋轉+暫停pin
@@ -62,7 +88,12 @@ $(function () {
             'animation': 'pinReturn 1.8s ease-in-out forwards',
         });
         // 淡出音樂license
-        $('#audioLicense').fadeOut(2500);
+        $('#audioLicense').fadeOut(2500, function () {
+            $('#evelynHome p').fadeOut(2500, function () {
+                $('#evelynHome h2').fadeOut(2500)
+            });
+
+        });
         $('#audioLicense2').fadeOut(2500);
         pinOut = true;
     }
@@ -83,13 +114,21 @@ $(function () {
                 'animation': 'pinReturn 1.8s ease-in-out forwards',
             });
             // 淡出音樂license
-            $('#audioLicense').fadeOut(2500);
+            $('#audioLicense').fadeOut(2500, function () {
+                $('#evelynHome p').fadeOut(800, function () {
+                    $('#evelynHome h2').fadeOut(800)
+                });
+
+            });
             $('#audioLicense2').fadeOut(2500);
             pinOut = true;
         },
         drag: function (event, ui) {
+            // home唱片fadeout
             $('#contactHome').css('animation', 'fadeOutTopLeft 1.8s forwards');
+            // 移除所有的rotateImg類別
             $('.rotateImg').removeClass('rotateImg');
+            // 原留在唱片機上的唱片要clone並after回去專輯裡面 => 然後從唱片機上移除
             $("#droppable").find(".draggable").fadeOut(800, function () {
                 let thisDiv = $(this).clone().attr('style', '').css('display', 'none');
                 let thisId = thisDiv.attr('id');
@@ -97,7 +136,6 @@ $(function () {
                     return $(thisDiv).fadeIn(800);
                 });
                 $(this).remove();
-                console.log(this);
                 thisDiv.draggable();
             });
         },
@@ -116,22 +154,6 @@ $(function () {
                 top: 0
             });
             $droppedItem.find('img:last').addClass('rotateImg');
-            if (!$('#center').hasClass('moveCorner')) {
-                $('#center').addClass('moveCorner');
-                if ($(window).width() <= 1280) {
-                    $('#center.moveCorner').css({
-                        'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
-                    });
-                } else {
-                    $('#center.moveCorner').css({
-                        'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
-                        'transition': '2s 0.8s all ease-in-out',
-                    });
-                }
-            }
-
-            $('#center.moveCorner').find('h1,p').delay(1200).fadeOut(900);
-            $('header').delay(2000).fadeIn(800);
             $('#content').delay(2400).fadeIn(800);
             switch ($droppedItem.attr('id')) {
                 case 'aboutRecord':
@@ -159,9 +181,15 @@ $(function () {
                     playAudio.load();
                     break;
             }
-
+            $('#pin').trigger('click');
         }
     });
+
+    // About Me content Experience點擊下展
+    $('#about .card h4').click(function () {
+        $(this).next().toggleClass('beclick');
+    });
+
 
 
     // 以下9/19測試更改

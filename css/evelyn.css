@@ -70,13 +70,9 @@ section {
 }
 section header {
   position: absolute;
-  font-size: 2rem;
-  line-height: 2rem;
+  width: 150px;
   top: 20px;
   left: 20px;
-  padding: 10px;
-  color: #EDEDED;
-  border: 4px solid #EDEDED;
   display: none;
 }
 section audio {
@@ -87,14 +83,20 @@ section audio {
 section #audioLicense {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 25%;
+  left: 35%;
+  width: 30%;
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
   color: #EDEDED;
   word-wrap: break-word;
   display: none;
+}
+section #audioLicense span {
+  font-size: 2rem;
+}
+section #audioLicense small {
+  font-size: 1.5rem;
 }
 section #audioLicense #freeDownload {
   color: #EDEDED;
@@ -105,38 +107,44 @@ section #audioLicense #freeDownload {
 section #audioLicense2 {
   color: #EDEDED;
   position: absolute;
-  left: 10%;
-  top: 10%;
-  font-size: 24px;
+  left: 16%;
+  top: 18%;
+  width: 28%;
+  word-wrap: break-word;
   display: none;
 }
 section #audioLicense2 span {
-  font-size: 42px;
+  font-size: 2rem;
+}
+section #audioLicense2 small {
+  font-size: 1.5rem;
 }
 section #audioLicense2 a {
-  font-size: 14px;
+  font-size: 0.8rem;
 }
-section #center {
+
+#center {
   transition: 2s 0.8s all ease-in-out;
   transform: rotate(0deg) translate3d(0%, 0%, 0);
 }
-section figure {
+
+figure {
   width: 40%;
   height: 84vh;
   left: 30%;
   bottom: 3%;
   position: absolute;
 }
-section figure > div {
+figure > div {
   width: 100%;
   height: 100%;
 }
-section figure #recordPlayer {
+figure #recordPlayer {
   padding-top: 20%;
   width: fit-content;
   height: 100%;
 }
-section figure #recordPlayer #player {
+figure #recordPlayer #player {
   position: relative;
   height: 100%;
   aspect-ratio: 1/1;
@@ -144,7 +152,7 @@ section figure #recordPlayer #player {
   background-color: #EDEDED;
   box-shadow: 109.95px 108.61px 42.91px rgba(40, 24, 11, 0.01), 69.72px 69.72px 40.23px rgba(40, 24, 11, 0.05), 40.23px 38.88px 33.52px rgba(40, 24, 11, 0.18), 17.43px 17.43px 24.14px rgba(40, 24, 11, 0.31), 4.02px 4.02px 13.41px rgba(40, 24, 11, 0.36);
 }
-section figure #recordPlayer #player h1 {
+figure #recordPlayer #player h1 {
   line-height: 0.7;
   font-size: 8vw;
   color: #EAE8FA;
@@ -152,7 +160,7 @@ section figure #recordPlayer #player h1 {
   top: calc(0% - 16vh);
   left: calc(50% - 14vw);
 }
-section figure #recordPlayer #player p {
+figure #recordPlayer #player p {
   rotate: -90deg;
   line-height: 1;
   font-size: 6vw;
@@ -161,7 +169,7 @@ section figure #recordPlayer #player p {
   top: calc(50% - 6.8vh);
   left: calc(0% - 15vw);
 }
-section figure #recordPlayer #player #pin {
+figure #recordPlayer #player #pin {
   position: absolute;
   z-index: 9;
   width: fit-content;
@@ -172,11 +180,11 @@ section figure #recordPlayer #player #pin {
   transform: rotate(7deg);
   transition: 0.8s all ease-in-out;
 }
-section figure #recordPlayer #player #pin:hover {
+figure #recordPlayer #player #pin:hover {
   cursor: pointer;
   height: 86%;
 }
-section figure #recordPlayer #player #pinSeat {
+figure #recordPlayer #player #pinSeat {
   position: absolute;
   z-index: 10;
   width: 25%;
@@ -184,7 +192,7 @@ section figure #recordPlayer #player #pinSeat {
   bottom: -6%;
   right: -6%;
 }
-section figure #vinyl {
+figure #vinyl {
   position: absolute;
   width: fit-content;
   height: 72%;
@@ -192,57 +200,77 @@ section figure #vinyl {
   left: 2%;
   z-index: 2;
 }
-section figure #vinyl #round {
+figure #vinyl #round {
   width: 100%;
   height: 100%;
   z-index: -1;
   position: relative;
 }
-section figure #vinyl #round img {
+figure #vinyl #round img {
   height: 100%;
   aspect-ratio: 1/1;
 }
-section figure #vinyl #round #droppable {
+figure #vinyl #round #droppable {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   right: 0;
 }
-section figure #vinyl #round #droppable img {
+figure #vinyl #round #droppable img {
   position: absolute;
   top: 0;
   right: 0;
 }
-section #menuList {
+
+#evelynHome {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  color: #EDEDED;
+}
+#evelynHome h2 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  display: none;
+  width: 582px;
+}
+#evelynHome p {
+  font-size: 28px;
+  display: none;
+  padding-left: 60px;
+}
+
+#menuList {
   width: 160px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-section #menuList li {
+#menuList li {
   height: 130px;
   width: 100%;
   margin: 25px 0;
 }
-section #menuList li .album {
+#menuList li .album {
   width: 100%;
   height: 100%;
   position: relative;
   transition: 0.6s all ease-in-out;
 }
-section #menuList li .album > img {
+#menuList li .album > img {
   position: absolute;
   width: fit-content;
   height: 100%;
 }
-section #menuList li .album .albumCover {
+#menuList li .album .albumCover {
   right: 0;
   top: 0;
   -webkit-user-drag: none;
 }
-section #menuList li .album .albumRecord {
+#menuList li .album .albumRecord {
   position: relative;
   height: 98%;
   aspect-ratio: 1/1;
@@ -250,54 +278,54 @@ section #menuList li .album .albumRecord {
   left: 10px;
   transition: 1s all ease-in-out;
 }
-section #menuList li .album .albumRecord:hover {
+#menuList li .album .albumRecord:hover {
   cursor: grab;
 }
-section #menuList li .album .albumRecord .background {
+#menuList li .album .albumRecord .background {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-user-drag: none;
   /* 適用於 Webkit 瀏覽器 */
-  pointer-events: none;
   /* 讓滑鼠事件穿透到父元素 */
 }
-section #menuList li .album .albumRecord .recordRotate {
+#menuList li .album .albumRecord .recordRotate {
   position: absolute;
   width: 100%;
   height: 100%;
   rotate: 90deg;
   -webkit-user-drag: none;
   /* 適用於 Webkit 瀏覽器 */
-  pointer-events: none;
   /* 讓滑鼠事件穿透到父元素 */
 }
-section #menuList li .album .albumRecord:active {
+#menuList li .album .albumRecord:active {
   cursor: grabbing;
 }
-section #menuList li .album:hover {
+#menuList li .album:hover {
   cursor: pointer;
   rotate: -5deg;
 }
-section #menuList li .album:hover .albumRecord {
+#menuList li .album:hover .albumRecord {
   left: -60px;
   top: 1%;
   rotate: -90deg;
 }
-section #menuList li .album .albumBasic {
+#menuList li .album .albumBasic {
   top: 0;
   right: calc(0% + 122px);
   -webkit-user-drag: none;
 }
-section #droppable .draggable {
+
+#droppable .draggable {
   width: 100%;
   height: 100%;
 }
-section #droppable .draggable img {
+#droppable .draggable img {
   position: absolute;
   transform: scale(0.95);
 }
-section #content {
+
+#content {
   width: 55%;
   height: 100vh;
   background-color: rgba(17, 17, 17, 0.3);
@@ -306,7 +334,7 @@ section #content {
   right: 0;
   display: none;
 }
-section #content .inner {
+#content .inner {
   position: absolute;
   top: 16%;
   left: 10%;
@@ -315,80 +343,159 @@ section #content .inner {
   color: #EDEDED;
   overflow: auto;
 }
-section #content .inner::-webkit-scrollbar {
+#content .inner::-webkit-scrollbar {
   display: none;
 }
-section #content .inner h2 {
+#content .inner h2 {
   font-size: 40px;
   margin-bottom: 20px;
 }
-section #content .inner p {
+#content .inner p {
   font-family: "Noto Sans TC", sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 2.5rem;
+  letter-spacing: 0.8px;
   left: 1.4px;
 }
-section #content .inner .card {
+#content .inner .card {
   width: 88%;
   margin-top: 25px;
 }
-section #content .inner .card > div {
+#content .inner .card > div {
   padding: 10px;
   border: 1px solid #EDEDED;
   border-radius: 10px;
 }
-section #content .inner .card > div:first-child {
+#content .inner .card > div:first-child {
   margin-bottom: 20px;
 }
-section #content .inner .card h3 {
+#content .inner .card h3 {
   width: 78%;
   padding-bottom: 5px;
-  font-size: 24px;
+  font-size: 26px;
   border-bottom: 2px solid #EDEDED;
 }
-section #content .inner .card h4 {
+#content .inner .card h4 {
   font-family: "Noto Sans TC", sans-serif;
   font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
 }
-section #content .inner .card h4:first-child {
+#content .inner .card h4:first-child {
   margin-top: 0;
 }
-section #content .inner .card span {
-  display: inline-block;
-  width: 40px;
+#content .inner .card h4 small {
+  font-size: 28px;
+  transition: 0.8s;
 }
-section #content #contact .card > div {
-  padding: 20px;
+#content .inner .card h4:hover {
+  cursor: pointer;
 }
-section #content #contact .card > div a {
+#content .inner .card h4:hover small {
+  transform: rotate(-90deg);
+}
+#content .inner .card .experiencePoint {
   display: flex;
-  align-items: center;
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  height: fit-content;
+  display: none;
+  color: #fbdbb5;
 }
-section #content #contact .card > div a:last-child {
-  margin-bottom: 0;
+#content .inner .card .experiencePoint p {
+  width: 94%;
+  padding-left: 60px;
 }
-section #content #contact .card > div a img {
-  width: 36px;
-  margin-right: 20px;
+#content .inner .card .experiencePoint small {
+  margin: 0 20px 0 15px;
 }
-section #content #works .card {
+#content .inner .card .experiencePoint.beclick {
+  display: flex;
+}
+#content #works .title {
+  padding-left: 5%;
+}
+#content #works .card {
   width: 100%;
 }
-section #content #about.inner,
-section #content #works.inner,
-section #content #contact.inner {
+#content #works .card .worksItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ededed;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#content #works .card .worksItem:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+#content #works .card article {
+  width: 68%;
+}
+#content #works .card article h3 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+#content #works .card article h3 small {
+  font-size: 18px;
+}
+#content #works .card article p {
+  font-weight: 400;
+}
+#content #works .card img {
+  width: 22%;
+  height: fit-content;
+  object-fit: contain;
+  border-radius: 7px;
+}
+#content #contact {
+  left: 6%;
+}
+#content #contact .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#content #contact .card > div {
+  padding: 20px;
+}
+#content #contact .card > div h3 {
+  margin-bottom: 15px;
+}
+#content #contact .card > div p {
+  font-size: 18px;
+  font-weight: bolder;
+  display: flex;
+}
+#content #contact .card > div a {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+#content #about.inner,
+#content #works.inner,
+#content #contact.inner {
   display: none;
 }
 
 @media (max-width: 1440px) {
   section #content .inner {
     top: 8%;
-    left: 8%;
-    width: calc(92% - 180px);
+    left: 6%;
+    width: calc(94% - 160px);
   }
   section #content .inner p {
     font-size: 100%;
@@ -401,6 +508,9 @@ section #content #contact.inner {
     transition: 2s 0.8s all ease-in-out;
   }
   section #menuList {
+    position: absolute;
+    right: 0;
+    z-index: 99;
     width: 140px;
   }
   section #menuList li {
@@ -433,5 +543,10 @@ section #content #contact.inner {
     opacity: 0;
     -webkit-transform: translate3d(-100%, -100%, 0);
     transform: translate3d(-100%, -100%, 0);
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
   }
 }/*# sourceMappingURL=evelyn.css.map */

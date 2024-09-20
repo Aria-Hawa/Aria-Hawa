@@ -4,7 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap'), url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
 
-
 body {
     font-family: 'Goldman', sans-serif;
     overflow: hidden;
@@ -26,13 +25,9 @@ section {
 
     header {
         position: absolute;
-        font-size: map-get($font-size, xl);
-        line-height: map-get($font-size, xl);
+        width: 150px;
         top: 20px;
         left: 20px;
-        padding: $interval-m;
-        color: map-get($recordColor, lightgray);
-        border: 4px solid map-get($recordColor, lightgray);
         display: none;
     }
 
@@ -45,14 +40,22 @@ section {
     #audioLicense {
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 25%;
+        left: 35%;
+        width: 30%;
         padding: 10px;
         font-size: map-get($font-size, m);
         border-radius: 5px;
         color: map-get($recordColor, lightgray);
         word-wrap: break-word;
         display: none;
+
+        span {
+            font-size: map-get($font-size, xl);
+        }
+
+        small {
+            font-size: map-get($font-size, l);
+        }
 
         #freeDownload {
             color: map-get($recordColor, lightgray);
@@ -65,379 +68,492 @@ section {
     #audioLicense2 {
         color: map-get($recordColor, lightgray);
         position: absolute;
-        left: 10%;
-        top: 10%;
-        font-size: 24px;
+        left: 16%;
+        top: 18%;
+        width: 28%;
+        word-wrap: break-word;
         display: none;
 
         span {
-            font-size: 42px;
+            font-size: map-get($font-size, xl);
+        }
+
+        small {
+            font-size: map-get($font-size, l);
         }
 
         a {
-            font-size: 14px;
+            font-size: map-get($font-size, s);
         }
     }
+}
 
-    #center {
-        transition: 2s 0.8s all ease-in-out;
-        transform: rotate(0deg) translate3d(0%, 0%, 0);
+
+#center {
+    transition: 2s 0.8s all ease-in-out;
+    transform: rotate(0deg) translate3d(0%, 0%, 0);
+}
+
+figure {
+    width: 40%;
+    height: 84vh;
+    left: 30%;
+    bottom: 3%;
+    position: absolute;
+
+    >div {
+        width: 100%;
+        height: 100%;
     }
 
+    #recordPlayer {
+        padding-top: 20%;
+        width: fit-content;
+        height: 100%;
+        // min-width: 350px;
 
-    figure {
-        width: 40%;
-        height: 84vh;
-        left: 30%;
-        bottom: 3%;
-        position: absolute;
-
-        >div {
-            width: 100%;
+        #player {
+            position: relative;
             height: 100%;
-        }
+            // 設定寬會抓高且1:1
+            aspect-ratio: 1/1;
+            border-radius: 25px;
+            background-color: map-get($recordColor, lightgray);
 
-        #recordPlayer {
-            padding-top: 20%;
-            width: fit-content;
-            height: 100%;
-            // min-width: 350px;
+            box-shadow:
+                109.95px 108.61px 42.91px rgba(40, 24, 11, 0.01),
+                69.72px 69.72px 40.23px rgba(40, 24, 11, 0.05),
+                40.23px 38.88px 33.52px rgba(40, 24, 11, 0.18),
+                17.43px 17.43px 24.14px rgba(40, 24, 11, 0.31),
+                4.02px 4.02px 13.41px rgba(40, 24, 11, 0.36);
 
-            #player {
-                position: relative;
-                height: 100%;
-                // 設定寬會抓高且1:1
-                aspect-ratio: 1/1;
-                border-radius: 25px;
-                background-color: map-get($recordColor, lightgray);
+            h1 {
+                line-height: .7;
+                font-size: 8vw;
+                color: map-get($recordColor, secondary1);
+                position: absolute;
+                top: calc(0% - 16vh);
+                left: calc(50% - 14vw);
+            }
 
-                box-shadow:
-                    109.95px 108.61px 42.91px rgba(40, 24, 11, 0.01),
-                    69.72px 69.72px 40.23px rgba(40, 24, 11, 0.05),
-                    40.23px 38.88px 33.52px rgba(40, 24, 11, 0.18),
-                    17.43px 17.43px 24.14px rgba(40, 24, 11, 0.31),
-                    4.02px 4.02px 13.41px rgba(40, 24, 11, 0.36);
+            p {
+                rotate: -90deg;
+                line-height: 1;
+                font-size: 6vw;
+                color: map-get($recordColor, secondary2);
+                position: absolute;
+                top: calc(50% - 6.8vh);
+                left: calc(0% - 15vw);
+            }
 
-                h1 {
-                    line-height: .7;
-                    font-size: 8vw;
-                    color: map-get($recordColor, secondary1);
-                    position: absolute;
-                    top: calc(0% - 16vh);
-                    left: calc(50% - 14vw);
+            #pin {
+                position: absolute;
+                z-index: 9;
+                width: fit-content;
+                height: 74%;
+                top: calc(0% + 13%);
+                right: 5%;
+                transform-origin: 98% 98%;
+                transform: rotate(7deg);
+                transition: .8s all ease-in-out;
+
+                &:hover {
+                    cursor: pointer;
+                    height: 86%;
                 }
 
-                p {
-                    rotate: -90deg;
-                    line-height: 1;
-                    font-size: 6vw;
-                    color: map-get($recordColor, secondary2);
-                    position: absolute;
-                    top: calc(50% - 6.8vh);
-                    left: calc(0% - 15vw);
-                }
+                // &.beclick {
+                //     transform: rotate(-6deg);
+                // }
 
-                #pin {
-                    position: absolute;
-                    z-index: 9;
-                    width: fit-content;
-                    height: 74%;
-                    top: calc(0% + 13%);
-                    right: 5%;
-                    transform-origin: 98% 98%;
-                    transform: rotate(7deg);
-                    transition: .8s all ease-in-out;
+            }
 
-                    &:hover {
-                        cursor: pointer;
-                        height: 86%;
-                    }
-
-                    // &.beclick {
-                    //     transform: rotate(-6deg);
-                    // }
-
-                }
-
-                #pinSeat {
-                    position: absolute;
-                    z-index: 10;
-                    width: 25%;
-                    height: fit-content;
-                    bottom: -6%;
-                    right: -6%;
-                }
+            #pinSeat {
+                position: absolute;
+                z-index: 10;
+                width: 25%;
+                height: fit-content;
+                bottom: -6%;
+                right: -6%;
             }
         }
+    }
 
-        #vinyl {
-            position: absolute;
-            width: fit-content;
-            height: 72%;
-            top: calc(0% + 20% + 4.5%);
-            left: calc(0% + 2%);
-            z-index: 2;
+    #vinyl {
+        position: absolute;
+        width: fit-content;
+        height: 72%;
+        top: calc(0% + 20% + 4.5%);
+        left: calc(0% + 2%);
+        z-index: 2;
 
-            #round {
+        #round {
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            position: relative;
+
+            img {
+                height: 100%;
+                aspect-ratio: 1/1;
+            }
+
+            #droppable {
                 width: 100%;
                 height: 100%;
-                z-index: -1;
-                position: relative;
+                position: absolute;
+                top: 0;
+                right: 0;
 
                 img {
-                    height: 100%;
-                    aspect-ratio: 1/1;
-                }
-
-                #droppable {
-                    width: 100%;
-                    height: 100%;
                     position: absolute;
                     top: 0;
                     right: 0;
-
-                    img {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                    }
                 }
-
             }
-
 
         }
 
 
     }
 
-    #menuList {
-        width: 160px;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
 
-        li {
-            height: 130px;
+}
+
+#evelynHome {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+    color: map-get($recordColor, lightgray);
+
+    h2 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        display: none;
+        width: 582px;
+    }
+
+    p {
+        font-size: 28px;
+        display: none;
+        padding-left: 60px;
+    }
+}
+
+#menuList {
+    width: 160px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    li {
+        height: 130px;
+        width: 100%;
+        margin: $interval-xxl 0;
+
+        .album {
             width: 100%;
-            margin: $interval-xxl 0;
+            height: 100%;
+            position: relative;
+            transition: .6s all ease-in-out;
 
-            .album {
-                width: 100%;
+            >img {
+                position: absolute;
+                width: fit-content;
                 height: 100%;
+            }
+
+            .albumCover {
+                right: 0;
+                top: 0;
+                -webkit-user-drag: none;
+            }
+
+            .albumRecord {
                 position: relative;
-                transition: .6s all ease-in-out;
+                // position: absolute;
+                height: 98%;
+                aspect-ratio: 1/1;
+                top: 0;
+                left: 10px;
+                transition: 1s all ease-in-out;
 
-                >img {
+                &:hover {
+                    cursor: grab;
+                }
+
+                .background {
                     position: absolute;
-                    width: fit-content;
+                    width: 100%;
                     height: 100%;
+                    -webkit-user-drag: none;
+                    /* 適用於 Webkit 瀏覽器 */
+                    // pointer-events: none;
+                    /* 讓滑鼠事件穿透到父元素 */
                 }
 
-                .albumCover {
-                    right: 0;
-                    top: 0;
+                .recordRotate {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    rotate: 90deg;
                     -webkit-user-drag: none;
+                    /* 適用於 Webkit 瀏覽器 */
+                    // pointer-events: none;
+                    /* 讓滑鼠事件穿透到父元素 */
                 }
+
+                &:active {
+                    cursor: grabbing;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+                rotate: -5deg;
 
                 .albumRecord {
-                    position: relative;
-                    // position: absolute;
-                    height: 98%;
-                    aspect-ratio: 1/1;
-                    top: 0;
-                    left: 10px;
-                    transition: 1s all ease-in-out;
+                    left: -60px;
+                    top: 1%;
+                    rotate: -90deg;
+                }
+            }
 
-                    &:hover {
-                        cursor: grab;
-                    }
+            .albumBasic {
+                top: 0;
+                right: calc(0% + 122px);
+                -webkit-user-drag: none;
+            }
+        }
 
-                    .background {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        -webkit-user-drag: none;
-                        /* 適用於 Webkit 瀏覽器 */
-                        pointer-events: none;
-                        /* 讓滑鼠事件穿透到父元素 */
-                    }
 
-                    .recordRotate {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        rotate: 90deg;
-                        -webkit-user-drag: none;
-                        /* 適用於 Webkit 瀏覽器 */
-                        pointer-events: none;
-                        /* 讓滑鼠事件穿透到父元素 */
-                    }
+    }
+}
 
-                    &:active {
-                        cursor: grabbing;
-                    }
+#droppable {
+    .draggable {
+        width: 100%;
+        height: 100%;
+
+        img {
+            position: absolute;
+            transform: scale(0.95);
+        }
+    }
+}
+
+#content {
+    width: 55%;
+    height: 100vh;
+    background-color: $black-a3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+
+    .inner {
+        position: absolute;
+        top: 16%;
+        left: 10%;
+        width: calc(100% - 10% - 240px);
+        height: 85vh;
+        color: map-get($recordColor, lightgray);
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: $interval-xl;
+        }
+
+        p {
+            font-family: $font-family-tc;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 2.5rem;
+            letter-spacing: 0.8px;
+            left: 1.4px;
+        }
+
+        .card {
+            width: 88%;
+            margin-top: $interval-xxl;
+
+            >div {
+                padding: $interval-m;
+                border: 1px solid map-get($recordColor, lightgray);
+                border-radius: 10px;
+            }
+
+            >div:first-child {
+                margin-bottom: $interval-xl;
+            }
+
+            h3 {
+                width: 78%;
+                padding-bottom: $interval-s;
+                font-size: 26px;
+                border-bottom: 2px solid map-get($recordColor, lightgray);
+            }
+
+            h4 {
+                font-family: $font-family-tc;
+                font-size: 18px;
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: $interval-m;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                small {
+                    font-size: 28px;
+                    transition: 0.8s;
                 }
 
                 &:hover {
                     cursor: pointer;
-                    rotate: -5deg;
 
-                    .albumRecord {
-                        left: -60px;
-                        top: 1%;
-                        rotate: -90deg;
+                    small {
+                        transform: rotate(-90deg);
                     }
                 }
-
-                .albumBasic {
-                    top: 0;
-                    right: calc(0% + 122px);
-                    -webkit-user-drag: none;
-                }
             }
 
-
-        }
-    }
-
-    #droppable {
-        .draggable {
-            width: 100%;
-            height: 100%;
-
-            img {
-                position: absolute;
-                transform: scale(0.95);
-            }
-        }
-    }
-
-    #content {
-        width: 55%;
-        height: 100vh;
-        background-color: $black-a3;
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: none;
-
-        .inner {
-            position: absolute;
-            top: 16%;
-            left: 10%;
-            width: calc(100% - 10% - 240px);
-            height: 85vh;
-            color: map-get($recordColor, lightgray);
-            overflow: auto;
-
-            &::-webkit-scrollbar {
+            .experiencePoint {
+                display: flex;
+                font-size: 1rem;
+                font-weight: 400;
+                width: 100%;
+                height: fit-content;
                 display: none;
-            }
+                color: map-get($recordColor, secondary3);
 
-            h2 {
-                font-size: 40px;
-                margin-bottom: $interval-xl;
-            }
-
-            p {
-                font-family: $font-family-tc;
-                font-weight: 500;
-                font-size: 18px;
-                line-height: 2.5rem;
-                left: 1.4px;
-            }
-
-
-            .card {
-                width: 88%;
-                margin-top: $interval-xxl;
-
-                >div {
-                    padding: $interval-m;
-                    border: 1px solid map-get($recordColor, lightgray);
-                    border-radius: 10px;
+                p {
+                    width: 94%;
+                    padding-left: 60px;
                 }
 
-                >div:first-child {
-                    margin-bottom: $interval-xl;
+                small {
+                    margin: 0 $interval-xl 0 $interval-l;
                 }
+
+                &.beclick {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    #works {
+        .title {
+            padding-left: 5%;
+        }
+
+        .card {
+            width: 100%;
+
+            .worksItem {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 90%;
+                padding: 10px;
+                border: 1px solid #ededed;
+                border-radius: 10px;
+                margin: 0 auto;
+                margin-bottom: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }
+            }
+
+            article {
+                width: 68%;
 
                 h3 {
-                    width: 78%;
-                    padding-bottom: $interval-s;
-                    font-size: 24px;
-                    border-bottom: 2px solid map-get($recordColor, lightgray);
-                }
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: end;
 
-                h4 {
-                    font-family: $font-family-tc;
-                    font-size: 18px;
-                    margin-top: $interval-m;
-
-                    &:first-child {
-                        margin-top: 0;
-                    }
-                }
-
-
-
-                span {
-                    display: inline-block;
-                    width: 40px;
-                }
-
-            }
-        }
-
-        #contact {
-            .card {
-                >div {
-                    padding: $interval-xl;
-
-                    a {
-                        display: flex;
-                        align-items: center;
+                    small {
                         font-size: 18px;
-                        margin-bottom: $interval-xl;
-
-                        &:last-child {
-                            margin-bottom: 0;
-                        }
-
-                        img {
-                            width: 36px;
-                            margin-right: $interval-xl;
-                        }
                     }
                 }
+
+                p {
+                    font-weight: 400;
+                }
             }
-        }
 
-
-        #works {
-            .card {
-                width: 100%;
-
+            img {
+                width: 22%;
+                height: fit-content;
+                object-fit: contain;
+                border-radius: 7px;
             }
-        }
 
-        #about.inner,
-        #works.inner,
-        #contact.inner {
-            display: none;
         }
     }
 
+
+    #contact {
+        left: 6%;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            >div {
+                padding: $interval-xl;
+
+                h3 {
+                    margin-bottom: $interval-l;
+                }
+
+                p {
+                    font-size: 18px;
+                    font-weight: bolder;
+                    display: flex;
+                }
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                    font-weight: 400;
+                    margin-bottom: $interval-xl;
+                }
+            }
+        }
+    }
+
+    #about.inner,
+    #works.inner,
+    #contact.inner {
+        display: none;
+    }
 }
+
 
 @media (max-width:1440px) {
     section {
         #content .inner {
             top: 8%;
-            left: 8%;
-            width: calc(100% - 8% - 180px);
+            left: 6%;
+            width: calc(100% - 6% - 160px);
 
             p {
                 font-size: 100%;
@@ -457,6 +573,9 @@ section {
         }
 
         #menuList {
+            position: absolute;
+            right: 0;
+            z-index: 99;
             width: 140px;
 
             li {
@@ -476,7 +595,7 @@ section {
 
 @keyframes rotatePin {
     from {
-        transform: rotate(-0deg);
+        transform: rotate(0deg);
     }
 
     to {
@@ -501,5 +620,11 @@ section {
         opacity: 0;
         -webkit-transform: translate3d(-100%, -100%, 0);
         transform: translate3d(-100%, -100%, 0)
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
     }
 }
