@@ -1,23 +1,16 @@
-## Hi there 👋
-## 此網站Evelyn為虛構人物
-## 音樂全部是Snoozy Beats所創作的
-[Evelyn Music Web](https://aria-hawa.github.io/Aria-Hawa/)
+#### !! 本網站為個人練習作品，網頁中的音樂人 Evelyn 為虛構角色。網站中所使用的音樂均來自 _Snoozy Beats_，僅供展示用途
+#### !! This website is a personal practice project, and the artist Evelyn featured on the site is a fictional character. The music used on the website is sourced from [_Snoozy Beats_](https://freemusicarchive.org/music/snoozy-beats/) and is for demonstration purposes only.
 
-#Music by Snoozy Beats
-[Free download](https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7)
+---
+
+[![Evelyn](images/index.png)](https://aria-hawa.github.io/Evelyn-Music-Web/)
 
 
-<!--
-**Aria-Hawa/Aria-Hawa** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+> **Music on this webpage**
+> 
+* Lazy Afternoon -Snoozy Beats
+* Midnight Drifter -Snoozy Beats
+* Doing Good -Snoozy Beats
+* Rewind -Snoozy Beats
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+[Free music download]( https://drive.google.com/drive/u/1/folders/11g5Tc_DwMd29I-wKQUH9sHM7hdlF76r7)
