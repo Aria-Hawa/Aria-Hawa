@@ -25,7 +25,11 @@ $(function () {
                     $('#center.moveCorner').css({
                         'transform': 'rotate(42deg) translate3d(-41%, 80%, 0)',
                     });
-                } else {
+                } if ($(window).width() <= 820) {
+                    $('#center.moveCorner').css({
+                        'transform': 'rotate(42deg) translate3d(-61%, 40%, 0)',
+                    });
+                } if ($(window).width() > 1280) {
                     $('#center.moveCorner').css({
                         'transform': 'rotate(42deg) translate3d(-41%, 63%, 0)',
                         'transition': '2s 0.8s all ease-in-out',
@@ -160,7 +164,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#about.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-midnightDrifter.mp3');
-                    $('#audioLicense2 span').text('＜Midnight Drifter＞');
+                    $('#audioLicense2 span').text('《Midnight Drifter》');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;
@@ -168,7 +172,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#works.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-doingGood.mp3');
-                    $('#audioLicense2 span').text('＜Doing Good＞');
+                    $('#audioLicense2 span').text('《Doing Good》');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;
@@ -176,7 +180,7 @@ $(function () {
                     $('.inner').css('display', 'none');
                     $('#contact.inner').fadeIn(900);
                     $('#playAudio source').attr('src', './audio/snoozyBeats-rewind.mp3');
-                    $('#audioLicense2 span').text('＜Rewind＞');
+                    $('#audioLicense2 span').text('《Rewind》');
                     playAudio = $('#playAudio')[0];
                     playAudio.load();
                     break;

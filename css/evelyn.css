@@ -337,10 +337,10 @@ figure #vinyl #round #droppable img {
 }
 #content .inner {
   position: absolute;
-  top: 16%;
+  top: 8%;
   left: 10%;
-  width: calc(90% - 240px);
-  height: 85vh;
+  width: calc(90% - 200px);
+  height: 88vh;
   color: #EDEDED;
   overflow: auto;
 }
@@ -360,7 +360,7 @@ figure #vinyl #round #droppable img {
   left: 1.4px;
 }
 #content .inner .card {
-  width: 88%;
+  width: 98%;
   margin-top: 25px;
 }
 #content .inner .card > div {
@@ -493,33 +493,170 @@ figure #vinyl #round #droppable img {
   display: none;
 }
 
-@media (max-width: 1440px) {
-  section #content .inner {
-    top: 8%;
-    left: 6%;
-    width: calc(94% - 160px);
+@media screen and (max-height: 1024px) and (max-width: 1279px) {
+  figure {
+    height: 50vh;
   }
-  section #content .inner p {
-    font-size: 100%;
-    line-height: 2rem;
+  figure #recordPlayer #player h1 {
+    top: calc(0% - 10vh);
   }
-  section #content .inner .card p {
-    font-size: 1rem;
+  figure #recordPlayer #player p {
+    top: calc(50% - 4.8vh);
   }
-  section #center.moveCorner {
-    transition: 2s 0.8s all ease-in-out;
+  #evelynHome {
+    top: 18%;
+    left: 10%;
+    width: 72%;
   }
-  section #menuList {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-    width: 140px;
+  section #audioLicense {
+    left: 40%;
+    width: 55%;
   }
-  section #menuList li {
-    height: 110px;
+  section #audioLicense2 {
+    top: 24%;
+    left: 8%;
   }
-  section #menuList li .album .albumBasic {
-    right: calc(0% + 105px);
+  #content .inner {
+    top: 7%;
+    width: calc(90% - 174px);
+    height: 87vh;
+  }
+  #content .inner .card {
+    width: 100%;
+  }
+  #content #works .card .worksItem {
+    flex-direction: column;
+  }
+  #content #works .card img {
+    width: 58%;
+  }
+  #content #works .card article {
+    width: 100%;
+  }
+  #content #works .card article h3 {
+    flex-direction: column;
+    align-items: start;
+  }
+  #content #contact .card > div p {
+    word-wrap: break-word;
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 1366px) and (min-height: 1024px) and (max-width: 1366px) and (max-height: 1024px) {
+  figure {
+    height: 50vh;
+  }
+  figure #recordPlayer #player h1 {
+    top: calc(0% - 10vh);
+  }
+  figure #recordPlayer #player p {
+    top: calc(50% - 4.8vh);
+  }
+  #evelynHome {
+    top: 23%;
+    left: 10%;
+  }
+  section #audioLicense {
+    left: 40%;
+    width: 55%;
+  }
+  section #audioLicense2 {
+    top: 24%;
+    left: 8%;
+  }
+}
+@media screen and (min-width: 1024px) and (min-height: 1366px) and (max-width: 1024px) and (max-height: 1366px) {
+  figure {
+    height: 35vh;
+  }
+  figure #recordPlayer #player h1 {
+    font-size: 11vw;
+    top: -7vh;
+    left: calc(50% - 19vw);
+  }
+  figure #recordPlayer #player p {
+    font-size: 9vw;
+    top: calc(50% - 2.8vh);
+    left: calc(0% - 22vw);
+  }
+  section #audioLicense2 {
+    width: 33%;
+    left: 3%;
+  }
+  #content {
+    width: 63%;
+  }
+  #content .inner {
+    top: 9%;
+    left: 7%;
+    width: calc(90% - 148px);
+  }
+  #content .inner .card {
+    width: 100%;
+  }
+  #content #works .card .worksItem {
+    flex-direction: column;
+  }
+  #content #works .card img {
+    width: 58%;
+  }
+  #content #works .card article {
+    width: 100%;
+  }
+  #content #works .card article h3 {
+    flex-direction: column;
+    align-items: start;
+  }
+  #content #contact .card > div p {
+    word-wrap: break-word;
+    flex-direction: column;
+  }
+}
+@media (max-width: 1023px) {
+  figure {
+    height: 35vh;
+  }
+  figure #recordPlayer #player h1 {
+    font-size: 11vw;
+    top: -7vh;
+    left: calc(50% - 19vw);
+  }
+  figure #recordPlayer #player p {
+    font-size: 9vw;
+    top: calc(50% - 2.8vh);
+    left: calc(0% - 22vw);
+  }
+  section #audioLicense2 {
+    width: 33%;
+    left: 3%;
+  }
+  #content {
+    width: 63%;
+  }
+  #content .inner {
+    top: 9%;
+    left: 7%;
+    width: calc(90% - 148px);
+  }
+  #content .inner .card {
+    width: 100%;
+  }
+  #content #works .card .worksItem {
+    flex-direction: column;
+  }
+  #content #works .card img {
+    width: 58%;
+  }
+  #content #works .card article {
+    width: 100%;
+  }
+  #content #works .card article h3 {
+    flex-direction: column;
+    align-items: start;
+  }
+  #content #contact .card > div p {
+    word-wrap: break-word;
+    flex-direction: column;
   }
 }
 @keyframes rotatePin {
