@@ -567,7 +567,6 @@ figure {
         top: 18%;
         left: 10%;
         width: 72%;
-        color: red;
     }
 
     section #audioLicense {
@@ -722,10 +721,6 @@ figure {
         }
     }
 
-    #evelynHome {
-        color: greenyellow;
-    }
-
     section #audioLicense2 {
         width: 33%;
         left: 3%;
@@ -766,6 +761,13 @@ figure {
             flex-direction: column;
         }
 
+    }
+}
+
+// 測試s6 lite平板
+@media screen and (min-width: 2000px) and (min-height: 1200px) and (max-width: 2000px) and (max-height: 1200px) {
+    #evelynHome {
+        color: red;
     }
 }
 

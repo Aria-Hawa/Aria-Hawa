@@ -507,7 +507,6 @@ figure #vinyl #round #droppable img {
     top: 18%;
     left: 10%;
     width: 72%;
-    color: red;
   }
   section #audioLicense {
     left: 40%;
@@ -627,9 +626,6 @@ figure #vinyl #round #droppable img {
     top: calc(50% - 2.8vh);
     left: calc(0% - 22vw);
   }
-  #evelynHome {
-    color: greenyellow;
-  }
   section #audioLicense2 {
     width: 33%;
     left: 3%;
@@ -661,6 +657,11 @@ figure #vinyl #round #droppable img {
   #content #contact .card > div p {
     word-wrap: break-word;
     flex-direction: column;
+  }
+}
+@media screen and (min-width: 2000px) and (min-height: 1200px) and (max-width: 2000px) and (max-height: 1200px) {
+  #evelynHome {
+    color: red;
   }
 }
 @keyframes rotatePin {
