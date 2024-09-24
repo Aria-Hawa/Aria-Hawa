@@ -224,8 +224,8 @@ figure {
     position: absolute;
     top: 10%;
     // left: 20%;
-    left: 24%;
-    width: 60%;
+    left: 31%;
+    width: 50%;
     color: map-get($recordColor, lightgray);
 
     h2 {
@@ -766,7 +766,7 @@ figure {
 }
 
 // 測試s6 lite平板
-@media screen and (min-width: 2000px) and (min-height: 1200px) and (max-width: 2000px) and (max-height: 1200px) {
+@media (min-width:1921px) {
     #evelynHome {
         color: red;
     }
