@@ -567,6 +567,7 @@ figure {
         top: 18%;
         left: 10%;
         width: 72%;
+        color: red;
     }
 
     section #audioLicense {
@@ -719,6 +720,10 @@ figure {
             top: calc(50% - 2.8vh);
             left: calc(0% - 22vw);
         }
+    }
+
+    #evelynHome {
+        color: greenyellow;
     }
 
     section #audioLicense2 {
